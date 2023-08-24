@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.efx.sumec.dao.ylxtfMapper">
+  <resultMap id="BaseResultMap" type="com.efx.sumec.model.ylxtf">
+    <id column="XTF001" jdbcType="INTEGER" property="xtf001" />
+    <result column="XTF002" jdbcType="VARCHAR" property="xtf002" />
+    <result column="XTF003" jdbcType="INTEGER" property="xtf003" />
+    <result column="XTF004" jdbcType="VARCHAR" property="xtf004" />
+    <result column="XTF005" jdbcType="INTEGER" property="xtf005" />
+    <result column="XTF006" jdbcType="VARCHAR" property="xtf006" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    XTF001, XTF002, XTF003, XTF004, XTF005, XTF006
+  </sql>
+  <select id="selectByExample" parameterType="com.efx.sumec.model.ylxtfExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from ylxtf
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from ylxtf
+    where XTF001 = #{xtf001,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from ylxtf
+    where XTF001 = #{xtf001,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.efx.sumec.model.ylxtfExample">
+    delete from ylxtf
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.efx.sumec.model.ylxtf">
+    insert into ylxtf (XTF001, XTF002, XTF003, 
+      XTF004, XTF005, XTF006
+      )
+    values (#{xtf001,jdbcType=INTEGER}, #{xtf002,jdbcType=VARCHAR}, #{xtf003,jdbcType=INTEGER}, 
+      #{xtf004,jdbcType=VARCHAR}, #{xtf005,jdbcType=INTEGER}, #{xtf006,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.efx.sumec.model.ylxtf">
+    insert into ylxtf
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="xtf001 != null">
+        XTF001,
+      </if>
+      <if test="xtf002 != null">
+        XTF002,
+      </if>
+      <if test="xtf003 != null">
+        XTF003,
+      </if>
+      <if test="xtf004 != null">
+        XTF004,
+      </if>
+      <if test="xtf005 != null">
+        XTF005,
+      </if>
+      <if test="xtf006 != null">
+        XTF006,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="xtf001 != null">
+        #{xtf001,jdbcType=INTEGER},
+      </if>
+      <if test="xtf002 != null">
+        #{xtf002,jdbcType=VARCHAR},
+      </if>
+      <if test="xtf003 != null">
+        #{xtf003,jdbcType=INTEGER},
+      </if>
+      <if test="xtf004 != null">
+        #{xtf004,jdbcType=VARCHAR},
+      </if>
+      <if test="xtf005 != null">
+        #{xtf005,jdbcType=INTEGER},
+      </if>
+      <if test="xtf006 != null">
+        #{xtf006,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.efx.sumec.model.ylxtfExample" resultType="java.lang.Long">
+    select count(*) from ylxtf
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update ylxtf
+    <set>
+      <if test="record.xtf001 != null">
+        XTF001 = #{record.xtf001,jdbcType=INTEGER},
+      </if>
+      <if test="record.xtf002 != null">
+        XTF002 = #{record.xtf002,jdbcType=VARCHAR},
+      </if>
+      <if test="record.xtf003 != null">
+        XTF003 = #{record.xtf003,jdbcType=INTEGER},
+      </if>
+      <if test="record.xtf004 != null">
+        XTF004 = #{record.xtf004,jdbcType=VARCHAR},
+      </if>
+      <if test="record.xtf005 != null">
+        XTF005 = #{record.xtf005,jdbcType=INTEGER},
+      </if>
+      <if test="record.xtf006 != null">
+        XTF006 = #{record.xtf006,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update ylxtf
+    set XTF001 = #{record.xtf001,jdbcType=INTEGER},
+      XTF002 = #{record.xtf002,jdbcType=VARCHAR},
+      XTF003 = #{record.xtf003,jdbcType=INTEGER},
+      XTF004 = #{record.xtf004,jdbcType=VARCHAR},
+      XTF005 = #{record.xtf005,jdbcType=INTEGER},
+      XTF006 = #{record.xtf006,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.efx.sumec.model.ylxtf">
+    update ylxtf
+    <set>
+      <if test="xtf002 != null">
+        XTF002 = #{xtf002,jdbcType=VARCHAR},
+      </if>
+      <if test="xtf003 != null">
+        XTF003 = #{xtf003,jdbcType=INTEGER},
+      </if>
+      <if test="xtf004 != null">
+        XTF004 = #{xtf004,jdbcType=VARCHAR},
+      </if>
+      <if test="xtf005 != null">
+        XTF005 = #{xtf005,jdbcType=INTEGER},
+      </if>
+      <if test="xtf006 != null">
+        XTF006 = #{xtf006,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where XTF001 = #{xtf001,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.efx.sumec.model.ylxtf">
+    update ylxtf
+    set XTF002 = #{xtf002,jdbcType=VARCHAR},
+      XTF003 = #{xtf003,jdbcType=INTEGER},
+      XTF004 = #{xtf004,jdbcType=VARCHAR},
+      XTF005 = #{xtf005,jdbcType=INTEGER},
+      XTF006 = #{xtf006,jdbcType=VARCHAR}
+    where XTF001 = #{xtf001,jdbcType=INTEGER}
+  </update>
+</mapper>

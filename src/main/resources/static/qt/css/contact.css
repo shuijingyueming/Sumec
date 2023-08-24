@@ -1,0 +1,153 @@
+@media ( min-width: 800px) {
+    .contactdiv {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .content4 {
+        width: 1200px;
+        height: 350px;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .sfddf {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: center;
+    }
+
+    .rightdiv {
+        width: 532px;
+        height: 233px;
+    }
+
+    .rightdiv img {
+        width: 532px;
+        height: 233px;
+    }
+
+    .title {
+        color: #333;
+        font-size: 32px;
+        height: 29px;
+        font-weight: bold;
+        line-height: 40px;
+    }
+
+    .cont {
+        color: #333;
+        font-size: 16px;
+        line-height: 40px;
+        padding-top: 30px;
+    }
+
+    .imgadd {
+        width: 16px;
+        height: 20px;
+        vertical-align: middle;
+    }
+
+    .imgtel {
+        width: 18px;
+        height: 18px;
+        vertical-align: middle;
+    }
+
+    .imgfax {
+        width: 18px;
+        height: 18px;
+        vertical-align: middle;
+    }
+
+    .imgemail {
+        width: 18px;
+        height: 14px;
+        vertical-align: middle;
+    }
+
+    .con {
+        margin-left: 10px;
+    }
+}
+
+@media ( max-width: 800px) {
+    .content41 {
+        width: 96%;
+        margin-left: 2%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .rightdiv img {
+        width: 100%;
+        min-height: 160px;
+        object-fit: cover;
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
+
+    .title {
+        margin-top: 20px;
+        color: #333;
+        font-size: 1.5em;
+        height: 29px;
+        font-weight: bold;
+        line-height: 40px;
+        padding-bottom: 20px;
+    }
+
+    .sfddf {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        margin-top: 15px;
+    }
+
+    .cont {
+        color: #333;
+        font-size: 14px;
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .sfddf img {
+        margin-top: 3px;
+    }
+
+    .imgadd {
+        width: 16px;
+        height: 20px;
+    }
+
+    .imgtel {
+        width: 18px;
+        height: 18px;
+
+    }
+
+    .imgfax {
+        width: 18px;
+        height: 18px;
+
+    }
+
+    .imgemail {
+        width: 18px;
+        height: 14px;
+
+    }
+
+    .con {
+        margin-left: 10px;
+    }
+}

@@ -1,0 +1,417 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.efx.sumec.dao.yljsbMapper">
+  <resultMap id="BaseResultMap" type="com.efx.sumec.model.yljsb">
+    <id column="JSB001" jdbcType="INTEGER" property="jsb001" />
+    <result column="JSB002" jdbcType="VARCHAR" property="jsb002" />
+    <result column="JSB003" jdbcType="VARCHAR" property="jsb003" />
+    <result column="JSB004" jdbcType="INTEGER" property="jsb004" />
+    <result column="JSB005" jdbcType="TIMESTAMP" property="jsb005" />
+    <result column="JSB006" jdbcType="VARCHAR" property="jsb006" />
+    <result column="JSB007" jdbcType="VARCHAR" property="jsb007" />
+    <result column="JSB008" jdbcType="VARCHAR" property="jsb008" />
+    <result column="JSB009" jdbcType="INTEGER" property="jsb009" />
+    <result column="JSB010" jdbcType="TIMESTAMP" property="jsb010" />
+    <result column="JSB011" jdbcType="INTEGER" property="jsb011" />
+    <result column="JSB012" jdbcType="INTEGER" property="jsb012" />
+    <result column="JSB013" jdbcType="TIMESTAMP" property="jsb013" />
+    <result column="JSB014" jdbcType="INTEGER" property="jsb014" />
+    <result column="JSB015" jdbcType="VARCHAR" property="jsb015" />
+    <result column="JSB016" jdbcType="VARCHAR" property="jsb016" />
+    <result column="JSB017" jdbcType="VARCHAR" property="jsb017" />
+    <result column="JSB018" jdbcType="VARCHAR" property="jsb018" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    JSB001, JSB002, JSB003, JSB004, JSB005, JSB006, JSB007, JSB008, JSB009, JSB010, JSB011, 
+    JSB012, JSB013, JSB014, JSB015, JSB016, JSB017, JSB018
+  </sql>
+  <select id="selectByExample" parameterType="com.efx.sumec.model.yljsbExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from yljsb
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from yljsb
+    where JSB001 = #{jsb001,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from yljsb
+    where JSB001 = #{jsb001,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.efx.sumec.model.yljsbExample">
+    delete from yljsb
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.efx.sumec.model.yljsb">
+    insert into yljsb (JSB001, JSB002, JSB003, 
+      JSB004, JSB005, JSB006, 
+      JSB007, JSB008, JSB009, 
+      JSB010, JSB011, JSB012, 
+      JSB013, JSB014, JSB015, 
+      JSB016, JSB017, JSB018
+      )
+    values (#{jsb001,jdbcType=INTEGER}, #{jsb002,jdbcType=VARCHAR}, #{jsb003,jdbcType=VARCHAR}, 
+      #{jsb004,jdbcType=INTEGER}, #{jsb005,jdbcType=TIMESTAMP}, #{jsb006,jdbcType=VARCHAR}, 
+      #{jsb007,jdbcType=VARCHAR}, #{jsb008,jdbcType=VARCHAR}, #{jsb009,jdbcType=INTEGER}, 
+      #{jsb010,jdbcType=TIMESTAMP}, #{jsb011,jdbcType=INTEGER}, #{jsb012,jdbcType=INTEGER}, 
+      #{jsb013,jdbcType=TIMESTAMP}, #{jsb014,jdbcType=INTEGER}, #{jsb015,jdbcType=VARCHAR}, 
+      #{jsb016,jdbcType=VARCHAR}, #{jsb017,jdbcType=VARCHAR}, #{jsb018,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.efx.sumec.model.yljsb">
+    insert into yljsb
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="jsb001 != null">
+        JSB001,
+      </if>
+      <if test="jsb002 != null">
+        JSB002,
+      </if>
+      <if test="jsb003 != null">
+        JSB003,
+      </if>
+      <if test="jsb004 != null">
+        JSB004,
+      </if>
+      <if test="jsb005 != null">
+        JSB005,
+      </if>
+      <if test="jsb006 != null">
+        JSB006,
+      </if>
+      <if test="jsb007 != null">
+        JSB007,
+      </if>
+      <if test="jsb008 != null">
+        JSB008,
+      </if>
+      <if test="jsb009 != null">
+        JSB009,
+      </if>
+      <if test="jsb010 != null">
+        JSB010,
+      </if>
+      <if test="jsb011 != null">
+        JSB011,
+      </if>
+      <if test="jsb012 != null">
+        JSB012,
+      </if>
+      <if test="jsb013 != null">
+        JSB013,
+      </if>
+      <if test="jsb014 != null">
+        JSB014,
+      </if>
+      <if test="jsb015 != null">
+        JSB015,
+      </if>
+      <if test="jsb016 != null">
+        JSB016,
+      </if>
+      <if test="jsb017 != null">
+        JSB017,
+      </if>
+      <if test="jsb018 != null">
+        JSB018,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="jsb001 != null">
+        #{jsb001,jdbcType=INTEGER},
+      </if>
+      <if test="jsb002 != null">
+        #{jsb002,jdbcType=VARCHAR},
+      </if>
+      <if test="jsb003 != null">
+        #{jsb003,jdbcType=VARCHAR},
+      </if>
+      <if test="jsb004 != null">
+        #{jsb004,jdbcType=INTEGER},
+      </if>
+      <if test="jsb005 != null">
+        #{jsb005,jdbcType=TIMESTAMP},
+      </if>
+      <if test="jsb006 != null">
+        #{jsb006,jdbcType=VARCHAR},
+      </if>
+      <if test="jsb007 != null">
+        #{jsb007,jdbcType=VARCHAR},
+      </if>
+      <if test="jsb008 != null">
+        #{jsb008,jdbcType=VARCHAR},
+      </if>
+      <if test="jsb009 != null">
+        #{jsb009,jdbcType=INTEGER},
+      </if>
+      <if test="jsb010 != null">
+        #{jsb010,jdbcType=TIMESTAMP},
+      </if>
+      <if test="jsb011 != null">
+        #{jsb011,jdbcType=INTEGER},
+      </if>
+      <if test="jsb012 != null">
+        #{jsb012,jdbcType=INTEGER},
+      </if>
+      <if test="jsb013 != null">
+        #{jsb013,jdbcType=TIMESTAMP},
+      </if>
+      <if test="jsb014 != null">
+        #{jsb014,jdbcType=INTEGER},
+      </if>
+      <if test="jsb015 != null">
+        #{jsb015,jdbcType=VARCHAR},
+      </if>
+      <if test="jsb016 != null">
+        #{jsb016,jdbcType=VARCHAR},
+      </if>
+      <if test="jsb017 != null">
+        #{jsb017,jdbcType=VARCHAR},
+      </if>
+      <if test="jsb018 != null">
+        #{jsb018,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.efx.sumec.model.yljsbExample" resultType="java.lang.Long">
+    select count(*) from yljsb
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update yljsb
+    <set>
+      <if test="record.jsb001 != null">
+        JSB001 = #{record.jsb001,jdbcType=INTEGER},
+      </if>
+      <if test="record.jsb002 != null">
+        JSB002 = #{record.jsb002,jdbcType=VARCHAR},
+      </if>
+      <if test="record.jsb003 != null">
+        JSB003 = #{record.jsb003,jdbcType=VARCHAR},
+      </if>
+      <if test="record.jsb004 != null">
+        JSB004 = #{record.jsb004,jdbcType=INTEGER},
+      </if>
+      <if test="record.jsb005 != null">
+        JSB005 = #{record.jsb005,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.jsb006 != null">
+        JSB006 = #{record.jsb006,jdbcType=VARCHAR},
+      </if>
+      <if test="record.jsb007 != null">
+        JSB007 = #{record.jsb007,jdbcType=VARCHAR},
+      </if>
+      <if test="record.jsb008 != null">
+        JSB008 = #{record.jsb008,jdbcType=VARCHAR},
+      </if>
+      <if test="record.jsb009 != null">
+        JSB009 = #{record.jsb009,jdbcType=INTEGER},
+      </if>
+      <if test="record.jsb010 != null">
+        JSB010 = #{record.jsb010,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.jsb011 != null">
+        JSB011 = #{record.jsb011,jdbcType=INTEGER},
+      </if>
+      <if test="record.jsb012 != null">
+        JSB012 = #{record.jsb012,jdbcType=INTEGER},
+      </if>
+      <if test="record.jsb013 != null">
+        JSB013 = #{record.jsb013,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.jsb014 != null">
+        JSB014 = #{record.jsb014,jdbcType=INTEGER},
+      </if>
+      <if test="record.jsb015 != null">
+        JSB015 = #{record.jsb015,jdbcType=VARCHAR},
+      </if>
+      <if test="record.jsb016 != null">
+        JSB016 = #{record.jsb016,jdbcType=VARCHAR},
+      </if>
+      <if test="record.jsb017 != null">
+        JSB017 = #{record.jsb017,jdbcType=VARCHAR},
+      </if>
+      <if test="record.jsb018 != null">
+        JSB018 = #{record.jsb018,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update yljsb
+    set JSB001 = #{record.jsb001,jdbcType=INTEGER},
+      JSB002 = #{record.jsb002,jdbcType=VARCHAR},
+      JSB003 = #{record.jsb003,jdbcType=VARCHAR},
+      JSB004 = #{record.jsb004,jdbcType=INTEGER},
+      JSB005 = #{record.jsb005,jdbcType=TIMESTAMP},
+      JSB006 = #{record.jsb006,jdbcType=VARCHAR},
+      JSB007 = #{record.jsb007,jdbcType=VARCHAR},
+      JSB008 = #{record.jsb008,jdbcType=VARCHAR},
+      JSB009 = #{record.jsb009,jdbcType=INTEGER},
+      JSB010 = #{record.jsb010,jdbcType=TIMESTAMP},
+      JSB011 = #{record.jsb011,jdbcType=INTEGER},
+      JSB012 = #{record.jsb012,jdbcType=INTEGER},
+      JSB013 = #{record.jsb013,jdbcType=TIMESTAMP},
+      JSB014 = #{record.jsb014,jdbcType=INTEGER},
+      JSB015 = #{record.jsb015,jdbcType=VARCHAR},
+      JSB016 = #{record.jsb016,jdbcType=VARCHAR},
+      JSB017 = #{record.jsb017,jdbcType=VARCHAR},
+      JSB018 = #{record.jsb018,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.efx.sumec.model.yljsb">
+    update yljsb
+    <set>
+      <if test="jsb002 != null">
+        JSB002 = #{jsb002,jdbcType=VARCHAR},
+      </if>
+      <if test="jsb003 != null">
+        JSB003 = #{jsb003,jdbcType=VARCHAR},
+      </if>
+      <if test="jsb004 != null">
+        JSB004 = #{jsb004,jdbcType=INTEGER},
+      </if>
+      <if test="jsb005 != null">
+        JSB005 = #{jsb005,jdbcType=TIMESTAMP},
+      </if>
+      <if test="jsb006 != null">
+        JSB006 = #{jsb006,jdbcType=VARCHAR},
+      </if>
+      <if test="jsb007 != null">
+        JSB007 = #{jsb007,jdbcType=VARCHAR},
+      </if>
+      <if test="jsb008 != null">
+        JSB008 = #{jsb008,jdbcType=VARCHAR},
+      </if>
+      <if test="jsb009 != null">
+        JSB009 = #{jsb009,jdbcType=INTEGER},
+      </if>
+      <if test="jsb010 != null">
+        JSB010 = #{jsb010,jdbcType=TIMESTAMP},
+      </if>
+      <if test="jsb011 != null">
+        JSB011 = #{jsb011,jdbcType=INTEGER},
+      </if>
+      <if test="jsb012 != null">
+        JSB012 = #{jsb012,jdbcType=INTEGER},
+      </if>
+      <if test="jsb013 != null">
+        JSB013 = #{jsb013,jdbcType=TIMESTAMP},
+      </if>
+      <if test="jsb014 != null">
+        JSB014 = #{jsb014,jdbcType=INTEGER},
+      </if>
+      <if test="jsb015 != null">
+        JSB015 = #{jsb015,jdbcType=VARCHAR},
+      </if>
+      <if test="jsb016 != null">
+        JSB016 = #{jsb016,jdbcType=VARCHAR},
+      </if>
+      <if test="jsb017 != null">
+        JSB017 = #{jsb017,jdbcType=VARCHAR},
+      </if>
+      <if test="jsb018 != null">
+        JSB018 = #{jsb018,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where JSB001 = #{jsb001,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.efx.sumec.model.yljsb">
+    update yljsb
+    set JSB002 = #{jsb002,jdbcType=VARCHAR},
+      JSB003 = #{jsb003,jdbcType=VARCHAR},
+      JSB004 = #{jsb004,jdbcType=INTEGER},
+      JSB005 = #{jsb005,jdbcType=TIMESTAMP},
+      JSB006 = #{jsb006,jdbcType=VARCHAR},
+      JSB007 = #{jsb007,jdbcType=VARCHAR},
+      JSB008 = #{jsb008,jdbcType=VARCHAR},
+      JSB009 = #{jsb009,jdbcType=INTEGER},
+      JSB010 = #{jsb010,jdbcType=TIMESTAMP},
+      JSB011 = #{jsb011,jdbcType=INTEGER},
+      JSB012 = #{jsb012,jdbcType=INTEGER},
+      JSB013 = #{jsb013,jdbcType=TIMESTAMP},
+      JSB014 = #{jsb014,jdbcType=INTEGER},
+      JSB015 = #{jsb015,jdbcType=VARCHAR},
+      JSB016 = #{jsb016,jdbcType=VARCHAR},
+      JSB017 = #{jsb017,jdbcType=VARCHAR},
+      JSB018 = #{jsb018,jdbcType=VARCHAR}
+    where JSB001 = #{jsb001,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,44 @@
+
+#server:
+#    port: 80
+#    max-http-header-size: 10240000
+#    tomcat:
+#      max-http-form-post-size: 10240000
+
+server:
+  port: 80
+#  ssl:
+#   key-store: classpath:9650057_xhh.nbefx.com.pfx
+#   key-store-password: xtu54t3u
+#   key-store-type: PKCS12
+
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    type: com.alibaba.druid.pool.DruidDataSource
+    url: jdbc:mysql://192.168.0.10:3306/smddata?useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Shanghai
+    username: root
+    password: ROOT
+    jdbcurl: 192.168.0.10
+
+    jdbcdk: 3306
+    dataname: smddata
+
+    initial-size: 5
+    min-idle: 5
+    max-active: 20
+    max-wait: 60000
+    time-between-eviction-runs-millis: 60000
+    min-evictable-idle-time-millis: 300000
+    validation-query: SELECT 1 FROM DUAL
+    test-while-idle: true
+    test-on-borrow: false
+    test-on-return: false
+  thymeleaf:
+    cache: false
+    prefix: classpath:/templates/
+    suffix: .html
+    resources:
+      static-locations: classpath:/static/
+
+

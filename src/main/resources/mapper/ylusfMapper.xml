@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.efx.sumec.dao.ylusfMapper">
+  <resultMap id="BaseResultMap" type="com.efx.sumec.model.ylusf">
+    <id column="USF001" jdbcType="INTEGER" property="usf001" />
+    <result column="USF002" jdbcType="VARCHAR" property="usf002" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    USF001, USF002
+  </sql>
+  <select id="selectByExample" parameterType="com.efx.sumec.model.ylusfExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from ylusf
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from ylusf
+    where USF001 = #{usf001,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from ylusf
+    where USF001 = #{usf001,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.efx.sumec.model.ylusfExample">
+    delete from ylusf
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.efx.sumec.model.ylusf">
+    insert into ylusf (USF001, USF002)
+    values (#{usf001,jdbcType=INTEGER}, #{usf002,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.efx.sumec.model.ylusf">
+    insert into ylusf
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="usf001 != null">
+        USF001,
+      </if>
+      <if test="usf002 != null">
+        USF002,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="usf001 != null">
+        #{usf001,jdbcType=INTEGER},
+      </if>
+      <if test="usf002 != null">
+        #{usf002,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.efx.sumec.model.ylusfExample" resultType="java.lang.Long">
+    select count(*) from ylusf
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update ylusf
+    <set>
+      <if test="record.usf001 != null">
+        USF001 = #{record.usf001,jdbcType=INTEGER},
+      </if>
+      <if test="record.usf002 != null">
+        USF002 = #{record.usf002,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update ylusf
+    set USF001 = #{record.usf001,jdbcType=INTEGER},
+      USF002 = #{record.usf002,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.efx.sumec.model.ylusf">
+    update ylusf
+    <set>
+      <if test="usf002 != null">
+        USF002 = #{usf002,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where USF001 = #{usf001,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.efx.sumec.model.ylusf">
+    update ylusf
+    set USF002 = #{usf002,jdbcType=VARCHAR}
+    where USF001 = #{usf001,jdbcType=INTEGER}
+  </update>
+</mapper>

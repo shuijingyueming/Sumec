@@ -1,0 +1,492 @@
+@charset "utf-8";
+
+/* CSS Document */
+
+@media ( min-width: 800px) {
+    .mapdiv {
+        width: 1400px;
+        height: 670px;
+        position: relative;
+        left: 50%;
+        margin-left: -700px;
+    }
+
+    .crisediv {
+        width: 1400px;
+        height: 670px;
+    }
+
+    .mapdiv img {
+        width: 1400px;
+        height: 670px;
+    }
+
+    .mapdiv div.m {
+        border-radius: 50%;
+        width: 8px;
+        height: 8px;
+        background: #66CCFF;
+        /*#ffffFF;*/
+        /*#25378D*/
+        position: absolute;
+    }
+
+    .mapdiv div.m1 {
+        left: 260px;
+        top: 120px;
+    }
+
+    .mapdiv div.m2 {
+        left: 190px;
+        top: 146px;
+    }
+
+    .mapdiv div.m3 {
+        left: 370px;
+        top: 180px;
+    }
+
+    .mapdiv div.m4 {
+        left: 196px;
+        top: 206px;
+    }
+
+    .mapdiv div.m5 {
+        left: 250px;
+        top: 260px;
+    }
+
+    .mapdiv div.m6 {
+        left: 378px;
+        top: 320px;
+    }
+
+    .mapdiv div.m7 {
+        left: 330px;
+        top: 430px;
+    }
+
+    .mapdiv div.m8 {
+        left: 452px;
+        top: 488px;
+    }
+
+    .mapdiv div.m9 {
+        left: 400px;
+        top: 494px;
+    }
+
+    .mapdiv div.m10 {
+        left: 402px;
+        top: 540px;
+    }
+
+    .mapdiv div.m11 {
+        left: 390px;
+        top: 550px;
+    }
+
+    .mapdiv div.m12 {
+        left: 338px;
+        top: 544px;
+    }
+
+    .mapdiv div.m13 {
+        left: 676px;
+        top: 102px;
+    }
+
+    .mapdiv div.m14 {
+        left: 725px;
+        top: 100px;
+    }
+
+    .mapdiv div.m15 {
+        left: 690px;
+        top: 114px;
+    }
+
+    .mapdiv div.m16 {
+        left: 684px;
+        top: 124px;
+    }
+
+    .mapdiv div.m17 {
+        left: 630px;
+        top: 120px;
+    }
+
+    .mapdiv div.m18 {
+        left: 614px;
+        top: 130px;
+    }
+
+    .mapdiv div.m19 {
+        left: 668px;
+        top: 132px;
+    }
+
+    .mapdiv div.m20 {
+        left: 700px;
+        top: 136px;
+    }
+
+    .mapdiv div.m21 {
+        left: 660px;
+        top: 140px;
+    }
+
+    .mapdiv div.m22 {
+        left: 672px;
+        top: 142px;
+    }
+
+    .mapdiv div.m23 {
+        left: 690px;
+        top: 150px;
+    }
+
+    .mapdiv div.m24 {
+        left: 780px;
+        top: 156px;
+    }
+
+    .mapdiv div.m25 {
+        left: 650px;
+        top: 160px;
+    }
+
+    .mapdiv div.m26 {
+        left: 696px;
+        top: 158px;
+    }
+
+    .mapdiv div.m27 {
+        left: 706px;
+        top: 164px;
+    }
+
+    .mapdiv div.m28 {
+        left: 724px;
+        top: 174px;
+    }
+
+    .mapdiv div.m29 {
+        left: 736px;
+        top: 170px;
+    }
+
+    .mapdiv div.m30 {
+        left: 726px;
+        top: 182px;
+    }
+
+    .mapdiv div.m31 {
+        left: 724px;
+        top: 196px;
+    }
+
+    .mapdiv div.m32 {
+        left: 740px;
+        top: 188px;
+    }
+
+    .mapdiv div.m33 {
+        left: 646px;
+        top: 180px;
+    }
+
+    .mapdiv div.m34 {
+        left: 610px;
+        top: 194px;
+    }
+
+    .mapdiv div.m35 {
+        left: 620px;
+        top: 212px;
+    }
+
+    .mapdiv div.m36 {
+        left: 650px;
+        top: 204px;
+    }
+
+    .mapdiv div.m37 {
+        left: 676px;
+        top: 210px;
+    }
+
+    .mapdiv div.m38 {
+        left: 626px;
+        top: 342px;
+    }
+
+    .mapdiv div.m39 {
+        left: 636px;
+        top: 340px;
+    }
+
+    .mapdiv div.m40 {
+        left: 646px;
+        top: 338px;
+    }
+
+    .mapdiv div.m41 {
+        left: 655px;
+        top: 336px;
+    }
+
+    .mapdiv div.m42 {
+        left: 699px;
+        top: 296px;
+    }
+
+    .mapdiv div.m43 {
+        left: 765px;
+        top: 400px;
+    }
+
+    .mapdiv div.m44 {
+        left: 765px;
+        top: 520px;
+    }
+
+    .mapdiv div.m45 {
+        left: 852px;
+        top: 238px;
+    }
+
+    .mapdiv div.m46 {
+        left: 840px;
+        top: 252px;
+    }
+
+    .mapdiv div.m47 {
+        left: 820px;
+        top: 232px;
+    }
+
+    .mapdiv div.m48 {
+        left: 790px;
+        top: 262px;
+    }
+
+    .mapdiv div.m49 {
+        left: 750px;
+        top: 250px;
+    }
+
+    .mapdiv div.m50 {
+        left: 778px;
+        top: 228px;
+    }
+
+    .mapdiv div.m51 {
+        left: 774px;
+        top: 215px;
+    }
+
+    .mapdiv div.m52 {
+        left: 778px;
+        top: 206px;
+    }
+
+    .mapdiv div.m53 {
+        left: 778px;
+        top: 196px;
+    }
+
+    .mapdiv div.m54 {
+        left: 760px;
+        top: 210px;
+    }
+
+    .mapdiv div.m55 {
+        left: 920px;
+        top: 290px;
+    }
+
+    .mapdiv div.m56 {
+        left: 954px;
+        top: 332px;
+    }
+
+    .mapdiv div.m57 {
+        left: 990px;
+        top: 265px;
+    }
+
+    .mapdiv div.m58 {
+        left: 1010px;
+        top: 288px;
+    }
+
+    .mapdiv div.m59 {
+        left: 1030px;
+        top: 300px;
+    }
+
+    .mapdiv div.m60 {
+        left: 1054px;
+        top: 316px;
+    }
+
+    .mapdiv div.m61 {
+        left: 1038px;
+        top: 350px;
+    }
+
+    .mapdiv div.m62 {
+        left: 1052px;
+        top: 362px;
+    }
+
+    .mapdiv div.m63 {
+        left: 1072px;
+        top: 400px;
+    }
+
+    .mapdiv div.m64 {
+        left: 1092px;
+        top: 404px;
+    }
+
+    .mapdiv div.m65 {
+        left: 1064px;
+        top: 280px;
+    }
+
+    .mapdiv div.m66 {
+        left: 1074px;
+        top: 260px;
+    }
+
+    .mapdiv div.m67 {
+        left: 1104px;
+        top: 254px;
+    }
+
+    .mapdiv div.m68 {
+        left: 1102px;
+        top: 228px;
+    }
+
+    .mapdiv div.m69 {
+        left: 1102px;
+        top: 218px;
+    }
+
+    .mapdiv div.m70 {
+        left: 1110px;
+        top: 298px;
+    }
+
+    .mapdiv div.m71 {
+        left: 1260px;
+        top: 566px;
+    }
+
+    .mapdiv div.m72 {
+        left: 1388px;
+        top: 566px;
+    }
+
+    .mapdiv div.m73 {
+        left: 1122px;
+        top: 202px;
+    }
+
+    .mapdiv div.m74 {
+        left: 1148px;
+        top: 206px;
+    }
+
+    .mapdiv div.m75 {
+        left: 676px;
+        top: 130px;
+    }
+
+    .mapdiv div.m76 {
+        left: 686px;
+        top: 106px;
+    }
+
+    .mapdiv div.m::before {
+        position: absolute;
+        content: "";
+        width: 100%;
+        height: 100%;
+        background: inherit;
+        border-radius: inherit;
+        animation: wave 2s ease-out infinite;
+    }
+
+    @keyframes wave {
+        50%,
+        75% {
+            transform: scale(2.5);
+        }
+        80%,
+        100% {
+            opacity: 0;
+        }
+    }
+    .container {
+    }
+
+    .sparkLine {
+        position: absolute;
+        transform-origin: left top;
+    }
+
+    .sparkLine .sparkParticle {
+        width: 1px;
+        height: 1px;
+        float: left;
+        background: #003376;
+        /*color:#003376;
+    box-shadow: 0 0 10px #003376;*/
+        opacity: 0;
+    }
+
+    @keyframes fade {
+        0% {
+            opacity: 0;
+        }
+        50% {
+            opacity: 1;
+        }
+        100% {
+            opacity: 0;
+        }
+    }
+    .wrapper {
+        width: 100px;
+        /* Set the size of the progress bar */
+        height: 100px;
+        position: absolute;
+        /* Enable clipping */
+        clip: rect(0px, 100px, 100px, 50px);
+        /* Hide half of the progress bar */
+    }
+
+    /* Set the sizes of the elements that make up the progress bar */
+    .circle {
+        width: 80px;
+        height: 80px;
+        border: 10px solid green;
+        border-radius: 50px;
+        position: absolute;
+        clip: rect(0px, 50px, 100px, 0px);
+    }
+}
+
+@media ( max-width: 800px) {
+    .crisediv {
+        display: none;
+    }
+
+    .map2 {
+        display: none;
+    }
+}

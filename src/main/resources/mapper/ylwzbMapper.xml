@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.efx.sumec.dao.ylwzbMapper">
+  <resultMap id="BaseResultMap" type="com.efx.sumec.model.ylwzb">
+    <id column="WZB001" jdbcType="INTEGER" property="wzb001" />
+    <result column="WZB002" jdbcType="VARCHAR" property="wzb002" />
+    <result column="WZB003" jdbcType="INTEGER" property="wzb003" />
+    <result column="WZB004" jdbcType="VARCHAR" property="wzb004" />
+    <result column="WZB005" jdbcType="INTEGER" property="wzb005" />
+    <result column="WZB006" jdbcType="VARCHAR" property="wzb006" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    WZB001, WZB002, WZB003, WZB004, WZB005, WZB006
+  </sql>
+  <select id="selectByExample" parameterType="com.efx.sumec.model.ylwzbExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from ylwzb
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from ylwzb
+    where WZB001 = #{wzb001,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from ylwzb
+    where WZB001 = #{wzb001,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.efx.sumec.model.ylwzbExample">
+    delete from ylwzb
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.efx.sumec.model.ylwzb">
+    insert into ylwzb (WZB001, WZB002, WZB003, 
+      WZB004, WZB005, WZB006
+      )
+    values (#{wzb001,jdbcType=INTEGER}, #{wzb002,jdbcType=VARCHAR}, #{wzb003,jdbcType=INTEGER}, 
+      #{wzb004,jdbcType=VARCHAR}, #{wzb005,jdbcType=INTEGER}, #{wzb006,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.efx.sumec.model.ylwzb">
+    insert into ylwzb
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="wzb001 != null">
+        WZB001,
+      </if>
+      <if test="wzb002 != null">
+        WZB002,
+      </if>
+      <if test="wzb003 != null">
+        WZB003,
+      </if>
+      <if test="wzb004 != null">
+        WZB004,
+      </if>
+      <if test="wzb005 != null">
+        WZB005,
+      </if>
+      <if test="wzb006 != null">
+        WZB006,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="wzb001 != null">
+        #{wzb001,jdbcType=INTEGER},
+      </if>
+      <if test="wzb002 != null">
+        #{wzb002,jdbcType=VARCHAR},
+      </if>
+      <if test="wzb003 != null">
+        #{wzb003,jdbcType=INTEGER},
+      </if>
+      <if test="wzb004 != null">
+        #{wzb004,jdbcType=VARCHAR},
+      </if>
+      <if test="wzb005 != null">
+        #{wzb005,jdbcType=INTEGER},
+      </if>
+      <if test="wzb006 != null">
+        #{wzb006,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.efx.sumec.model.ylwzbExample" resultType="java.lang.Long">
+    select count(*) from ylwzb
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update ylwzb
+    <set>
+      <if test="record.wzb001 != null">
+        WZB001 = #{record.wzb001,jdbcType=INTEGER},
+      </if>
+      <if test="record.wzb002 != null">
+        WZB002 = #{record.wzb002,jdbcType=VARCHAR},
+      </if>
+      <if test="record.wzb003 != null">
+        WZB003 = #{record.wzb003,jdbcType=INTEGER},
+      </if>
+      <if test="record.wzb004 != null">
+        WZB004 = #{record.wzb004,jdbcType=VARCHAR},
+      </if>
+      <if test="record.wzb005 != null">
+        WZB005 = #{record.wzb005,jdbcType=INTEGER},
+      </if>
+      <if test="record.wzb006 != null">
+        WZB006 = #{record.wzb006,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update ylwzb
+    set WZB001 = #{record.wzb001,jdbcType=INTEGER},
+      WZB002 = #{record.wzb002,jdbcType=VARCHAR},
+      WZB003 = #{record.wzb003,jdbcType=INTEGER},
+      WZB004 = #{record.wzb004,jdbcType=VARCHAR},
+      WZB005 = #{record.wzb005,jdbcType=INTEGER},
+      WZB006 = #{record.wzb006,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.efx.sumec.model.ylwzb">
+    update ylwzb
+    <set>
+      <if test="wzb002 != null">
+        WZB002 = #{wzb002,jdbcType=VARCHAR},
+      </if>
+      <if test="wzb003 != null">
+        WZB003 = #{wzb003,jdbcType=INTEGER},
+      </if>
+      <if test="wzb004 != null">
+        WZB004 = #{wzb004,jdbcType=VARCHAR},
+      </if>
+      <if test="wzb005 != null">
+        WZB005 = #{wzb005,jdbcType=INTEGER},
+      </if>
+      <if test="wzb006 != null">
+        WZB006 = #{wzb006,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where WZB001 = #{wzb001,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.efx.sumec.model.ylwzb">
+    update ylwzb
+    set WZB002 = #{wzb002,jdbcType=VARCHAR},
+      WZB003 = #{wzb003,jdbcType=INTEGER},
+      WZB004 = #{wzb004,jdbcType=VARCHAR},
+      WZB005 = #{wzb005,jdbcType=INTEGER},
+      WZB006 = #{wzb006,jdbcType=VARCHAR}
+    where WZB001 = #{wzb001,jdbcType=INTEGER}
+  </update>
+</mapper>

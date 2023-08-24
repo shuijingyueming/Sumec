@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.efx.sumec.dao.yljbbMapper">
+  <resultMap id="BaseResultMap" type="com.efx.sumec.model.yljbb">
+    <id column="JBB001" jdbcType="INTEGER" property="jbb001" />
+    <result column="JBB002" jdbcType="INTEGER" property="jbb002" />
+    <result column="JBB003" jdbcType="INTEGER" property="jbb003" />
+    <result column="JBB004" jdbcType="VARCHAR" property="jbb004" />
+    <result column="JBB005" jdbcType="VARCHAR" property="jbb005" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    JBB001, JBB002, JBB003, JBB004, JBB005
+  </sql>
+  <select id="selectByExample" parameterType="com.efx.sumec.model.yljbbExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from yljbb
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from yljbb
+    where JBB001 = #{jbb001,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from yljbb
+    where JBB001 = #{jbb001,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.efx.sumec.model.yljbbExample">
+    delete from yljbb
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.efx.sumec.model.yljbb">
+    insert into yljbb (JBB001, JBB002, JBB003, 
+      JBB004, JBB005)
+    values (#{jbb001,jdbcType=INTEGER}, #{jbb002,jdbcType=INTEGER}, #{jbb003,jdbcType=INTEGER}, 
+      #{jbb004,jdbcType=VARCHAR}, #{jbb005,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.efx.sumec.model.yljbb">
+    insert into yljbb
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="jbb001 != null">
+        JBB001,
+      </if>
+      <if test="jbb002 != null">
+        JBB002,
+      </if>
+      <if test="jbb003 != null">
+        JBB003,
+      </if>
+      <if test="jbb004 != null">
+        JBB004,
+      </if>
+      <if test="jbb005 != null">
+        JBB005,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="jbb001 != null">
+        #{jbb001,jdbcType=INTEGER},
+      </if>
+      <if test="jbb002 != null">
+        #{jbb002,jdbcType=INTEGER},
+      </if>
+      <if test="jbb003 != null">
+        #{jbb003,jdbcType=INTEGER},
+      </if>
+      <if test="jbb004 != null">
+        #{jbb004,jdbcType=VARCHAR},
+      </if>
+      <if test="jbb005 != null">
+        #{jbb005,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.efx.sumec.model.yljbbExample" resultType="java.lang.Long">
+    select count(*) from yljbb
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update yljbb
+    <set>
+      <if test="record.jbb001 != null">
+        JBB001 = #{record.jbb001,jdbcType=INTEGER},
+      </if>
+      <if test="record.jbb002 != null">
+        JBB002 = #{record.jbb002,jdbcType=INTEGER},
+      </if>
+      <if test="record.jbb003 != null">
+        JBB003 = #{record.jbb003,jdbcType=INTEGER},
+      </if>
+      <if test="record.jbb004 != null">
+        JBB004 = #{record.jbb004,jdbcType=VARCHAR},
+      </if>
+      <if test="record.jbb005 != null">
+        JBB005 = #{record.jbb005,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update yljbb
+    set JBB001 = #{record.jbb001,jdbcType=INTEGER},
+      JBB002 = #{record.jbb002,jdbcType=INTEGER},
+      JBB003 = #{record.jbb003,jdbcType=INTEGER},
+      JBB004 = #{record.jbb004,jdbcType=VARCHAR},
+      JBB005 = #{record.jbb005,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.efx.sumec.model.yljbb">
+    update yljbb
+    <set>
+      <if test="jbb002 != null">
+        JBB002 = #{jbb002,jdbcType=INTEGER},
+      </if>
+      <if test="jbb003 != null">
+        JBB003 = #{jbb003,jdbcType=INTEGER},
+      </if>
+      <if test="jbb004 != null">
+        JBB004 = #{jbb004,jdbcType=VARCHAR},
+      </if>
+      <if test="jbb005 != null">
+        JBB005 = #{jbb005,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where JBB001 = #{jbb001,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.efx.sumec.model.yljbb">
+    update yljbb
+    set JBB002 = #{jbb002,jdbcType=INTEGER},
+      JBB003 = #{jbb003,jdbcType=INTEGER},
+      JBB004 = #{jbb004,jdbcType=VARCHAR},
+      JBB005 = #{jbb005,jdbcType=VARCHAR}
+    where JBB001 = #{jbb001,jdbcType=INTEGER}
+  </update>
+</mapper>

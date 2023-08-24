@@ -1,0 +1,139 @@
+html,
+body {
+    padding: 0;
+    margin: 0 auto;
+}
+
+@media ( min-width: 800px) {
+    a {
+        text-decoration: none;
+        color: #4880B3;
+    }
+
+    a:hover {
+        color: #4880B3;
+    }
+}
+
+@media ( max-width: 800px) {
+    a {
+        text-decoration: none;
+        color: #fff;
+    }
+
+    a:hover {
+        color: #fff;
+    }
+
+    html, body, div {
+        overflow-x: hidden;
+    }
+}
+
+.flex {
+    display: flex;
+}
+
+
+/*换行 需要宽度*/
+
+.flex-wrap {
+    flex-wrap: wrap;
+}
+
+
+/*行样式*/
+
+.flex-row {
+    display: flex;
+    flex-direction: row;
+}
+
+
+/*列样式*/
+
+.flex-col {
+    display: flex;
+    flex-direction: column;
+}
+
+
+/*居中 需搭配上两个样式使用*/
+
+.flex-center {
+    justify-content: center;
+    align-items: center;
+}
+
+
+/*两边对齐*/
+
+.flex-between {
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+/*左对齐*/
+
+.flex-center-l {
+    justify-content: flex-start;
+    align-items: center;
+}
+
+
+/*右对齐*/
+
+.flex-center-r {
+    justify-content: flex-end;
+    align-items: center;
+}
+
+
+/*上对齐*/
+
+.flex-start {
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+
+/*均分对齐*/
+
+.flex-around {
+    justify-content: space-around;
+    align-items: center;
+}
+
+
+/*超过一行 ...*/
+
+.shenglve-more {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+}
+
+
+/*超过2行 ...*/
+
+.shenglve-more2 {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
+
+
+/*超过3行 ...*/
+
+.shenglve-more3 {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+}

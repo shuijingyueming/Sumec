@@ -1,0 +1,417 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.efx.sumec.dao.ylutaMapper">
+  <resultMap id="BaseResultMap" type="com.efx.sumec.model.yluta">
+    <id column="UTA001" jdbcType="VARCHAR" property="uta001" />
+    <result column="UTA002" jdbcType="VARCHAR" property="uta002" />
+    <result column="UTA003" jdbcType="INTEGER" property="uta003" />
+    <result column="UTA004" jdbcType="CHAR" property="uta004" />
+    <result column="UTA005" jdbcType="VARCHAR" property="uta005" />
+    <result column="UTA006" jdbcType="TIMESTAMP" property="uta006" />
+    <result column="UTA007" jdbcType="VARCHAR" property="uta007" />
+    <result column="UTA008" jdbcType="VARCHAR" property="uta008" />
+    <result column="UTA009" jdbcType="VARCHAR" property="uta009" />
+    <result column="UTA010" jdbcType="VARCHAR" property="uta010" />
+    <result column="UTA011" jdbcType="VARCHAR" property="uta011" />
+    <result column="UTA012" jdbcType="VARCHAR" property="uta012" />
+    <result column="UTA013" jdbcType="TIMESTAMP" property="uta013" />
+    <result column="UTA014" jdbcType="INTEGER" property="uta014" />
+    <result column="UTA015" jdbcType="INTEGER" property="uta015" />
+    <result column="UTA016" jdbcType="TIMESTAMP" property="uta016" />
+    <result column="UTA017" jdbcType="VARCHAR" property="uta017" />
+    <result column="UTA018" jdbcType="VARCHAR" property="uta018" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    UTA001, UTA002, UTA003, UTA004, UTA005, UTA006, UTA007, UTA008, UTA009, UTA010, UTA011, 
+    UTA012, UTA013, UTA014, UTA015, UTA016, UTA017, UTA018
+  </sql>
+  <select id="selectByExample" parameterType="com.efx.sumec.model.ylutaExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from yluta
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from yluta
+    where UTA001 = #{uta001,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from yluta
+    where UTA001 = #{uta001,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.efx.sumec.model.ylutaExample">
+    delete from yluta
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.efx.sumec.model.yluta">
+    insert into yluta (UTA001, UTA002, UTA003, 
+      UTA004, UTA005, UTA006, 
+      UTA007, UTA008, UTA009, 
+      UTA010, UTA011, UTA012, 
+      UTA013, UTA014, UTA015, 
+      UTA016, UTA017, UTA018
+      )
+    values (#{uta001,jdbcType=VARCHAR}, #{uta002,jdbcType=VARCHAR}, #{uta003,jdbcType=INTEGER}, 
+      #{uta004,jdbcType=CHAR}, #{uta005,jdbcType=VARCHAR}, #{uta006,jdbcType=TIMESTAMP}, 
+      #{uta007,jdbcType=VARCHAR}, #{uta008,jdbcType=VARCHAR}, #{uta009,jdbcType=VARCHAR}, 
+      #{uta010,jdbcType=VARCHAR}, #{uta011,jdbcType=VARCHAR}, #{uta012,jdbcType=VARCHAR}, 
+      #{uta013,jdbcType=TIMESTAMP}, #{uta014,jdbcType=INTEGER}, #{uta015,jdbcType=INTEGER}, 
+      #{uta016,jdbcType=TIMESTAMP}, #{uta017,jdbcType=VARCHAR}, #{uta018,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.efx.sumec.model.yluta">
+    insert into yluta
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="uta001 != null">
+        UTA001,
+      </if>
+      <if test="uta002 != null">
+        UTA002,
+      </if>
+      <if test="uta003 != null">
+        UTA003,
+      </if>
+      <if test="uta004 != null">
+        UTA004,
+      </if>
+      <if test="uta005 != null">
+        UTA005,
+      </if>
+      <if test="uta006 != null">
+        UTA006,
+      </if>
+      <if test="uta007 != null">
+        UTA007,
+      </if>
+      <if test="uta008 != null">
+        UTA008,
+      </if>
+      <if test="uta009 != null">
+        UTA009,
+      </if>
+      <if test="uta010 != null">
+        UTA010,
+      </if>
+      <if test="uta011 != null">
+        UTA011,
+      </if>
+      <if test="uta012 != null">
+        UTA012,
+      </if>
+      <if test="uta013 != null">
+        UTA013,
+      </if>
+      <if test="uta014 != null">
+        UTA014,
+      </if>
+      <if test="uta015 != null">
+        UTA015,
+      </if>
+      <if test="uta016 != null">
+        UTA016,
+      </if>
+      <if test="uta017 != null">
+        UTA017,
+      </if>
+      <if test="uta018 != null">
+        UTA018,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="uta001 != null">
+        #{uta001,jdbcType=VARCHAR},
+      </if>
+      <if test="uta002 != null">
+        #{uta002,jdbcType=VARCHAR},
+      </if>
+      <if test="uta003 != null">
+        #{uta003,jdbcType=INTEGER},
+      </if>
+      <if test="uta004 != null">
+        #{uta004,jdbcType=CHAR},
+      </if>
+      <if test="uta005 != null">
+        #{uta005,jdbcType=VARCHAR},
+      </if>
+      <if test="uta006 != null">
+        #{uta006,jdbcType=TIMESTAMP},
+      </if>
+      <if test="uta007 != null">
+        #{uta007,jdbcType=VARCHAR},
+      </if>
+      <if test="uta008 != null">
+        #{uta008,jdbcType=VARCHAR},
+      </if>
+      <if test="uta009 != null">
+        #{uta009,jdbcType=VARCHAR},
+      </if>
+      <if test="uta010 != null">
+        #{uta010,jdbcType=VARCHAR},
+      </if>
+      <if test="uta011 != null">
+        #{uta011,jdbcType=VARCHAR},
+      </if>
+      <if test="uta012 != null">
+        #{uta012,jdbcType=VARCHAR},
+      </if>
+      <if test="uta013 != null">
+        #{uta013,jdbcType=TIMESTAMP},
+      </if>
+      <if test="uta014 != null">
+        #{uta014,jdbcType=INTEGER},
+      </if>
+      <if test="uta015 != null">
+        #{uta015,jdbcType=INTEGER},
+      </if>
+      <if test="uta016 != null">
+        #{uta016,jdbcType=TIMESTAMP},
+      </if>
+      <if test="uta017 != null">
+        #{uta017,jdbcType=VARCHAR},
+      </if>
+      <if test="uta018 != null">
+        #{uta018,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.efx.sumec.model.ylutaExample" resultType="java.lang.Long">
+    select count(*) from yluta
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update yluta
+    <set>
+      <if test="record.uta001 != null">
+        UTA001 = #{record.uta001,jdbcType=VARCHAR},
+      </if>
+      <if test="record.uta002 != null">
+        UTA002 = #{record.uta002,jdbcType=VARCHAR},
+      </if>
+      <if test="record.uta003 != null">
+        UTA003 = #{record.uta003,jdbcType=INTEGER},
+      </if>
+      <if test="record.uta004 != null">
+        UTA004 = #{record.uta004,jdbcType=CHAR},
+      </if>
+      <if test="record.uta005 != null">
+        UTA005 = #{record.uta005,jdbcType=VARCHAR},
+      </if>
+      <if test="record.uta006 != null">
+        UTA006 = #{record.uta006,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.uta007 != null">
+        UTA007 = #{record.uta007,jdbcType=VARCHAR},
+      </if>
+      <if test="record.uta008 != null">
+        UTA008 = #{record.uta008,jdbcType=VARCHAR},
+      </if>
+      <if test="record.uta009 != null">
+        UTA009 = #{record.uta009,jdbcType=VARCHAR},
+      </if>
+      <if test="record.uta010 != null">
+        UTA010 = #{record.uta010,jdbcType=VARCHAR},
+      </if>
+      <if test="record.uta011 != null">
+        UTA011 = #{record.uta011,jdbcType=VARCHAR},
+      </if>
+      <if test="record.uta012 != null">
+        UTA012 = #{record.uta012,jdbcType=VARCHAR},
+      </if>
+      <if test="record.uta013 != null">
+        UTA013 = #{record.uta013,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.uta014 != null">
+        UTA014 = #{record.uta014,jdbcType=INTEGER},
+      </if>
+      <if test="record.uta015 != null">
+        UTA015 = #{record.uta015,jdbcType=INTEGER},
+      </if>
+      <if test="record.uta016 != null">
+        UTA016 = #{record.uta016,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.uta017 != null">
+        UTA017 = #{record.uta017,jdbcType=VARCHAR},
+      </if>
+      <if test="record.uta018 != null">
+        UTA018 = #{record.uta018,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update yluta
+    set UTA001 = #{record.uta001,jdbcType=VARCHAR},
+      UTA002 = #{record.uta002,jdbcType=VARCHAR},
+      UTA003 = #{record.uta003,jdbcType=INTEGER},
+      UTA004 = #{record.uta004,jdbcType=CHAR},
+      UTA005 = #{record.uta005,jdbcType=VARCHAR},
+      UTA006 = #{record.uta006,jdbcType=TIMESTAMP},
+      UTA007 = #{record.uta007,jdbcType=VARCHAR},
+      UTA008 = #{record.uta008,jdbcType=VARCHAR},
+      UTA009 = #{record.uta009,jdbcType=VARCHAR},
+      UTA010 = #{record.uta010,jdbcType=VARCHAR},
+      UTA011 = #{record.uta011,jdbcType=VARCHAR},
+      UTA012 = #{record.uta012,jdbcType=VARCHAR},
+      UTA013 = #{record.uta013,jdbcType=TIMESTAMP},
+      UTA014 = #{record.uta014,jdbcType=INTEGER},
+      UTA015 = #{record.uta015,jdbcType=INTEGER},
+      UTA016 = #{record.uta016,jdbcType=TIMESTAMP},
+      UTA017 = #{record.uta017,jdbcType=VARCHAR},
+      UTA018 = #{record.uta018,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.efx.sumec.model.yluta">
+    update yluta
+    <set>
+      <if test="uta002 != null">
+        UTA002 = #{uta002,jdbcType=VARCHAR},
+      </if>
+      <if test="uta003 != null">
+        UTA003 = #{uta003,jdbcType=INTEGER},
+      </if>
+      <if test="uta004 != null">
+        UTA004 = #{uta004,jdbcType=CHAR},
+      </if>
+      <if test="uta005 != null">
+        UTA005 = #{uta005,jdbcType=VARCHAR},
+      </if>
+      <if test="uta006 != null">
+        UTA006 = #{uta006,jdbcType=TIMESTAMP},
+      </if>
+      <if test="uta007 != null">
+        UTA007 = #{uta007,jdbcType=VARCHAR},
+      </if>
+      <if test="uta008 != null">
+        UTA008 = #{uta008,jdbcType=VARCHAR},
+      </if>
+      <if test="uta009 != null">
+        UTA009 = #{uta009,jdbcType=VARCHAR},
+      </if>
+      <if test="uta010 != null">
+        UTA010 = #{uta010,jdbcType=VARCHAR},
+      </if>
+      <if test="uta011 != null">
+        UTA011 = #{uta011,jdbcType=VARCHAR},
+      </if>
+      <if test="uta012 != null">
+        UTA012 = #{uta012,jdbcType=VARCHAR},
+      </if>
+      <if test="uta013 != null">
+        UTA013 = #{uta013,jdbcType=TIMESTAMP},
+      </if>
+      <if test="uta014 != null">
+        UTA014 = #{uta014,jdbcType=INTEGER},
+      </if>
+      <if test="uta015 != null">
+        UTA015 = #{uta015,jdbcType=INTEGER},
+      </if>
+      <if test="uta016 != null">
+        UTA016 = #{uta016,jdbcType=TIMESTAMP},
+      </if>
+      <if test="uta017 != null">
+        UTA017 = #{uta017,jdbcType=VARCHAR},
+      </if>
+      <if test="uta018 != null">
+        UTA018 = #{uta018,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where UTA001 = #{uta001,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.efx.sumec.model.yluta">
+    update yluta
+    set UTA002 = #{uta002,jdbcType=VARCHAR},
+      UTA003 = #{uta003,jdbcType=INTEGER},
+      UTA004 = #{uta004,jdbcType=CHAR},
+      UTA005 = #{uta005,jdbcType=VARCHAR},
+      UTA006 = #{uta006,jdbcType=TIMESTAMP},
+      UTA007 = #{uta007,jdbcType=VARCHAR},
+      UTA008 = #{uta008,jdbcType=VARCHAR},
+      UTA009 = #{uta009,jdbcType=VARCHAR},
+      UTA010 = #{uta010,jdbcType=VARCHAR},
+      UTA011 = #{uta011,jdbcType=VARCHAR},
+      UTA012 = #{uta012,jdbcType=VARCHAR},
+      UTA013 = #{uta013,jdbcType=TIMESTAMP},
+      UTA014 = #{uta014,jdbcType=INTEGER},
+      UTA015 = #{uta015,jdbcType=INTEGER},
+      UTA016 = #{uta016,jdbcType=TIMESTAMP},
+      UTA017 = #{uta017,jdbcType=VARCHAR},
+      UTA018 = #{uta018,jdbcType=VARCHAR}
+    where UTA001 = #{uta001,jdbcType=VARCHAR}
+  </update>
+</mapper>
