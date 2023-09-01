@@ -27,4 +27,5 @@ public interface ylwzaMapper {
     int updateByPrimaryKeySelective(ylwza record);
 
     int updateByPrimaryKey(ylwza record);
+    List<ylwza> selectBycpid(Integer wza001);
 }

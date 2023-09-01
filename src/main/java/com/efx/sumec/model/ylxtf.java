@@ -1,6 +1,27 @@
 package com.efx.sumec.model;
 
+import java.util.List;
+
 public class ylxtf {
+    private  ylxtf xtf;
+    private List<ylxtf> xtflist;
+
+    public ylxtf getXtf() {
+        return xtf;
+    }
+
+    public void setXtf(ylxtf xtf) {
+        this.xtf = xtf;
+    }
+
+    public List<ylxtf> getXtflist() {
+        return xtflist;
+    }
+
+    public void setXtflist(List<ylxtf> xtflist) {
+        this.xtflist = xtflist;
+    }
+
     private Integer xtf001;
 
     private String xtf002;

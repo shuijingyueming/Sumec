@@ -8,6 +8,12 @@
     <result column="JBB004" jdbcType="VARCHAR" property="jbb004" />
     <result column="JBB005" jdbcType="VARCHAR" property="jbb005" />
   </resultMap>
+  <resultMap id="BaseResultMap1" type="com.efx.sumec.model.yljbb"  extends="BaseResultMap">
+    <association property="usf" column="JBB002"  select="com.efx.sumec.dao.ylusfMapper.selectByPrimaryKey"/>
+  </resultMap>
+  <resultMap id="BaseResultMap2" type="com.efx.sumec.model.yljbb"  extends="BaseResultMap">
+    <association property="jsb" column="JBB003"  select="com.efx.sumec.dao.yljsbMapper.selectByPrimaryKey"/>
+  </resultMap>
   <sql id="Example_Where_Clause">
     <where>
       <foreach collection="oredCriteria" item="criteria" separator="or">
@@ -208,4 +214,10 @@
       JBB005 = #{jbb005,jdbcType=VARCHAR}
     where JBB001 = #{jbb001,jdbcType=INTEGER}
   </update>
+  <select id="selectBycpid" parameterType="java.lang.Integer" resultMap="BaseResultMap1">
+    select
+    <include refid="Base_Column_List" />
+    from yljbb
+    where JBB003 = #{jbb001,jdbcType=INTEGER}
+  </select>
 </mapper>

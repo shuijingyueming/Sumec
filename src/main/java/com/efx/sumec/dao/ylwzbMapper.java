@@ -4,6 +4,7 @@ import com.efx.sumec.model.ylwzb;
 import com.efx.sumec.model.ylwzbExample;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.session.RowBounds;
 
 public interface ylwzbMapper {
     long countByExample(ylwzbExample example);
@@ -27,4 +28,6 @@ public interface ylwzbMapper {
     int updateByPrimaryKeySelective(ylwzb record);
 
     int updateByPrimaryKey(ylwzb record);
+
+    List<ylwzb> selectByExampleAndPage(ylwzbExample example, RowBounds rowBounds);
 }

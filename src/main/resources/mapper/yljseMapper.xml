@@ -8,6 +8,7 @@
     <result column="JSE004" jdbcType="VARCHAR" property="jse004" />
     <result column="JSE005" jdbcType="INTEGER" property="jse005" />
     <result column="JSE006" jdbcType="TIMESTAMP" property="jse006" />
+    <association property="use" column="JSE005"  select="com.sumec.sumec.dao.cduseMapper.selectByPrimaryKey"/>
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>

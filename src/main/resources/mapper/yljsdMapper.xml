@@ -85,7 +85,7 @@
     </if>
   </select>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    select 
+    select
     <include refid="Base_Column_List" />
     from yljsd
     where JSD001 = #{jsd001,jdbcType=INTEGER}
@@ -101,10 +101,10 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.efx.sumec.model.yljsd">
-    insert into yljsd (JSD001, JSD002, JSD003, 
+    insert into yljsd (JSD001, JSD002, JSD003,
       JSD004, JSD005, JSD006
       )
-    values (#{jsd001,jdbcType=INTEGER}, #{jsd002,jdbcType=VARCHAR}, #{jsd003,jdbcType=VARCHAR}, 
+    values (#{jsd001,jdbcType=INTEGER}, #{jsd002,jdbcType=VARCHAR}, #{jsd003,jdbcType=VARCHAR},
       #{jsd004,jdbcType=INTEGER}, #{jsd005,jdbcType=VARCHAR}, #{jsd006,jdbcType=VARCHAR}
       )
   </insert>
@@ -225,4 +225,18 @@
       JSD006 = #{jsd006,jdbcType=VARCHAR}
     where JSD001 = #{jsd001,jdbcType=INTEGER}
   </update>
+  <select id="selectByExampleAndPage" resultMap="BaseResultMap" parameterType="com.efx.sumec.model.yljsdExample" flushCache="true" useCache="false">
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from yljsd
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
 </mapper>

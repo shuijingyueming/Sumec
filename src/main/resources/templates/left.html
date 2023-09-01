@@ -1,0 +1,82 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <base th:href="${#request.getContextPath()}+'/'">
+    <title>left</title>
+    <meta http-equiv="Cache-Control" content="no-siteapp"/>
+    <meta http-equiv="pragma" content="no-cache"/>
+    <meta http-equiv="cache-control" content="no-cache"/>
+    <meta http-equiv="expires" content="0"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <link rel="stylesheet" href="assets/css/dashboard/dashboard2.css">
+    <link rel="stylesheet" href="assets/css/flag/flagicon.css">
+    <link rel="stylesheet" href="assets/css/maps/jqvmap.css">
+    <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/skin/all-skins.css">
+    <link rel="stylesheet" href="assets/css/general/style.css">
+    <link rel="stylesheet" href="assets/css/sidebar/side-nav.css">
+    <link rel="stylesheet" href="assets/css/fonts/fonts-style.css">
+    <link rel="stylesheet" href="assets/css/nanoscroller/nanoscroller.css">
+    <style>
+        .footdiv {
+            width: 230px;
+            heigth: 50px;
+            line-height: 50px;
+            text-align: center;
+            position: fixed;
+            left: 0;
+            bottom: 0;
+        }
+
+    </style>
+</head>
+<body th:fragment="common_side">
+<aside class="main-sidebar">
+    <div class="nano">
+        <div class="nano-content">
+            <ul class="sidebar-menu" data-widget="tree" id="nav">
+                <li class="header"><a _href="toHt/indexi">主导航</a></li>
+                <li class="treeview">
+                    <a >
+                        <i class="fa fa-dashboard"></i> <span>系统设置</span>
+                        <span class="pull-right-container">
+									<i class="fa fa-angle-left pull-right"></i>
+								</span>
+                    </a>
+                    <ul class="treeview-menu">
+                            <li id="menu_a1"><a _href="toHt/wzxx"><i class="fa fa-circle-o"></i>平台信息</a></li>
+                            <li id="menu_a2"><a _href="toHt/selsjbf"><i class="fa fa-circle-o"></i>数据备份</a></li>
+                            <li id="menu_a3"><a _href="toHt/staff"><i class="fa fa-circle-o"></i>账户管理</a></li>
+                            <li id="menu_a4"><a _href="toHt/about"><i class="fa fa-circle-o"></i>关于我们</a></li>
+                            <li id="menu_a5"><a _href="toHt/togg"><i class="fa fa-circle-o"></i>广告管理</a></li>
+                    </ul>
+                </li>
+                <li class="treeview">
+                    <a >
+                        <i class="fa fa-dashboard"></i> <span>产品管理</span>
+                        <span class="pull-right-container">
+									<i class="fa fa-angle-left pull-right"></i>
+								</span>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li id="menu_b1"><a _href="toPr/tobq"><i class="fa fa-circle-o"></i>标签管理</a></li>
+                        <li id="menu_b2"><a _href="toPr/tosp"><i class="fa fa-circle-o"></i>规格管理</a></li>
+                        <li id="menu_b3"><a _href="toPr/toca"><i class="fa fa-circle-o"></i>类别管理</a></li>
+                        <li id="menu_b4"><a _href="toPr/tocp"><i class="fa fa-circle-o"></i>产品管理</a></li>
+                        <li id="menu_b5"><a _href="toPr/todd"><i class="fa fa-circle-o"></i>订单管理</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+        <!-- Footer Section Starts -->
+        <div class="footdiv">
+            <P style="color: #fff;">Copyright © 2023 易飞迅</P>
+        </div>
+        <!-- Footer Section Ends -->
+    </div>
+</aside>
+</body>
+</html>
+

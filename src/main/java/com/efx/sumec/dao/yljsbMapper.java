@@ -4,6 +4,7 @@ import com.efx.sumec.model.yljsb;
 import com.efx.sumec.model.yljsbExample;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.session.RowBounds;
 
 public interface yljsbMapper {
     long countByExample(yljsbExample example);
@@ -27,4 +28,6 @@ public interface yljsbMapper {
     int updateByPrimaryKeySelective(yljsb record);
 
     int updateByPrimaryKey(yljsb record);
+
+    List<yljsb> selectByExampleAndPage(yljsbExample example, RowBounds rowBounds);
 }

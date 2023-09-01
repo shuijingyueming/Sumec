@@ -4,6 +4,7 @@ import com.efx.sumec.model.ylusf;
 import com.efx.sumec.model.ylusfExample;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.session.RowBounds;
 
 public interface ylusfMapper {
     long countByExample(ylusfExample example);
@@ -27,4 +28,7 @@ public interface ylusfMapper {
     int updateByPrimaryKeySelective(ylusf record);
 
     int updateByPrimaryKey(ylusf record);
+
+    List<ylusf> selectByExampleAndPage(ylusfExample example, RowBounds rowBounds);
+
 }

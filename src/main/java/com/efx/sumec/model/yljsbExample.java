@@ -1274,6 +1274,11 @@ public class yljsbExample {
             addCriterion("JSB018 not between", value1, value2, "jsb018");
             return (Criteria) this;
         }
+
+        public Criteria andSql(String value) {
+            addCriterion(value);
+            return (Criteria) this;
+        }
     }
 
     public static class Criteria extends GeneratedCriteria {

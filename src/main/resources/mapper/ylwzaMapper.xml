@@ -9,6 +9,12 @@
     <result column="WZA005" jdbcType="VARCHAR" property="wza005" />
     <result column="WZA006" jdbcType="VARCHAR" property="wza006" />
   </resultMap>
+  <resultMap id="BaseResultMap1" type="com.efx.sumec.model.ylwza"  extends="BaseResultMap">
+    <association property="wzb" column="WZA003"  select="com.efx.sumec.dao.ylwzbMapper.selectByPrimaryKey"/>
+  </resultMap>
+  <resultMap id="BaseResultMap2" type="com.efx.sumec.model.ylwza"  extends="BaseResultMap">
+    <association property="jsb" column="WZA002"  select="com.efx.sumec.dao.yljsbMapper.selectByPrimaryKey"/>
+  </resultMap>
   <sql id="Example_Where_Clause">
     <where>
       <foreach collection="oredCriteria" item="criteria" separator="or">
@@ -225,4 +231,10 @@
       WZA006 = #{wza006,jdbcType=VARCHAR}
     where WZA001 = #{wza001,jdbcType=INTEGER}
   </update>
+  <select id="selectBycpid" parameterType="java.lang.Integer" resultMap="BaseResultMap1">
+    select
+    <include refid="Base_Column_List" />
+    from ylwza
+    where WZA002 = #{wza001,jdbcType=INTEGER}
+  </select>
 </mapper>

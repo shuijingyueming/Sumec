@@ -3,6 +3,25 @@ package com.efx.sumec.model;
 import java.util.Date;
 
 public class yluta {
+    private yljsb jsb;
+    private yluse use;
+
+    public yljsb getJsb() {
+        return jsb;
+    }
+
+    public void setJsb(yljsb jsb) {
+        this.jsb = jsb;
+    }
+
+    public yluse getUse() {
+        return use;
+    }
+
+    public void setUse(yluse use) {
+        this.use = use;
+    }
+
     private String uta001;
 
     private String uta002;
