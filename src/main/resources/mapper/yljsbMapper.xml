@@ -21,6 +21,12 @@
     <result column="JSB017" jdbcType="VARCHAR" property="jsb017" />
     <result column="JSB018" jdbcType="VARCHAR" property="jsb018" />
   </resultMap>
+  <resultMap id="BaseResultMap1" type="com.efx.sumec.model.yljsb"  extends="BaseResultMap">
+    <association property="xtf" column="JSB004"  select="com.efx.sumec.dao.ylxtfMapper.selectByPrimaryKey1"/>
+    <collection property="wzalist" column="JSB001"  select="com.efx.sumec.dao.ylwzaMapper.selectBycpid"/>
+    <collection property="jbblist" column="JSB001"  select="com.efx.sumec.dao.yljbbMapper.selectBycpid"/>
+    <collection property="jsclist" column="JSB001"  select="com.efx.sumec.dao.yljscMapper.selectBycpid"/>
+  </resultMap>
   <sql id="Example_Where_Clause">
     <where>
       <foreach collection="oredCriteria" item="criteria" separator="or">
@@ -97,7 +103,7 @@
       order by ${orderByClause}
     </if>
   </select>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap1">
     select 
     <include refid="Base_Column_List" />
     from yljsb
@@ -414,4 +420,18 @@
       JSB018 = #{jsb018,jdbcType=VARCHAR}
     where JSB001 = #{jsb001,jdbcType=INTEGER}
   </update>
+  <select id="selectByExampleAndPage" resultMap="BaseResultMap" parameterType="com.efx.sumec.model.yljsbExample" flushCache="true" useCache="false">
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from yljsb
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
 </mapper>

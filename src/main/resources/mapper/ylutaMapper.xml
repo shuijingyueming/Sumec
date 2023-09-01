@@ -20,6 +20,8 @@
     <result column="UTA016" jdbcType="TIMESTAMP" property="uta016" />
     <result column="UTA017" jdbcType="VARCHAR" property="uta017" />
     <result column="UTA018" jdbcType="VARCHAR" property="uta018" />
+    <association property="jsb" column="UTA003"  select="com.efx.sumec.dao.yljsbMapper.selectByPrimaryKey"/>
+    <association property="use" column="UTA014"  select="com.efx.sumec.dao.yluseMapper.selectByPrimaryKey"/>
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -414,4 +416,19 @@
       UTA018 = #{uta018,jdbcType=VARCHAR}
     where UTA001 = #{uta001,jdbcType=VARCHAR}
   </update>
+
+  <select id="selectByExampleAndPage" resultMap="BaseResultMap" parameterType="com.efx.sumec.model.ylutaExample" flushCache="true" useCache="false">
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from yluta
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
 </mapper>

@@ -1,5 +1,6 @@
 package com.efx.sumec.dao;
 
+import com.efx.sumec.model.ylusf;
 import com.efx.sumec.model.ylxtf;
 import com.efx.sumec.model.ylxtfExample;
 import java.util.List;
@@ -27,4 +28,10 @@ public interface ylxtfMapper {
     int updateByPrimaryKeySelective(ylxtf record);
 
     int updateByPrimaryKey(ylxtf record);
+
+    List<ylxtf> selectBysjid(Integer id);
+
+    List<ylxtf> selectByExample1(ylxtfExample e1);
+
+    ylxtf selectByPrimaryKey1(Integer xtf001);
 }

@@ -27,4 +27,5 @@ public interface yljbbMapper {
     int updateByPrimaryKeySelective(yljbb record);
 
     int updateByPrimaryKey(yljbb record);
+    List<yljbb> selectBycpid(Integer jbb001);
 }

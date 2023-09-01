@@ -4,6 +4,7 @@ import com.efx.sumec.model.yluta;
 import com.efx.sumec.model.ylutaExample;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.session.RowBounds;
 
 public interface ylutaMapper {
     long countByExample(ylutaExample example);
@@ -27,4 +28,6 @@ public interface ylutaMapper {
     int updateByPrimaryKeySelective(yluta record);
 
     int updateByPrimaryKey(yluta record);
+
+    List<yluta> selectByExampleAndPage(ylutaExample example, RowBounds rowBounds);
 }

@@ -1,8 +1,46 @@
 package com.efx.sumec.model;
 
 import java.util.Date;
+import java.util.List;
 
 public class yljsb {
+    private ylxtf xtf;
+    private List<ylwza> wzalist;
+    private List<yljbb> jbblist;
+    private List<yljsc> jsclist;
+
+    public List<yljsc> getJsclist() {
+        return jsclist;
+    }
+
+    public void setJsclist(List<yljsc> jsclist) {
+        this.jsclist = jsclist;
+    }
+
+    public List<ylwza> getWzalist() {
+        return wzalist;
+    }
+
+    public void setWzalist(List<ylwza> wzalist) {
+        this.wzalist = wzalist;
+    }
+
+    public List<yljbb> getJbblist() {
+        return jbblist;
+    }
+
+    public void setJbblist(List<yljbb> jbblist) {
+        this.jbblist = jbblist;
+    }
+
+    public ylxtf getXtf() {
+        return xtf;
+    }
+
+    public void setXtf(ylxtf xtf) {
+        this.xtf = xtf;
+    }
+
     private Integer jsb001;
 
     private String jsb002;

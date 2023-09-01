@@ -1,6 +1,25 @@
 package com.efx.sumec.model;
 
 public class ylwza {
+    private ylwzb wzb;
+    private yljsb jsb;
+
+    public ylwzb getWzb() {
+        return wzb;
+    }
+
+    public void setWzb(ylwzb wzb) {
+        this.wzb = wzb;
+    }
+
+    public yljsb getJsb() {
+        return jsb;
+    }
+
+    public void setJsb(yljsb jsb) {
+        this.jsb = jsb;
+    }
+
     private Integer wza001;
 
     private Integer wza002;

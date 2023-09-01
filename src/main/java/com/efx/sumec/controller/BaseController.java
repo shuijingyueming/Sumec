@@ -3,6 +3,7 @@ package com.efx.sumec.controller;
 
 import com.efx.sumec.model.*;
 import com.efx.sumec.pub.properConfig;
+import com.efx.sumec.service.*;
 import com.efx.sumec.until.EncrpytUtil;
 import com.efx.sumec.until.RSACoder;
 import org.apache.commons.lang.StringUtils;
@@ -22,7 +23,33 @@ import java.util.*;
 
 @Controller
 public class BaseController {
+    @Autowired
+    properConfig config;//配置信息
 
+    @Autowired
+    protected YluseService useService;//用户信息
+    @Autowired
+    protected YlxxzService xxzService;//网站信息
+    @Autowired
+    protected YljseService jseService;//关于我们
+    @Autowired
+    protected YljsdService jsdService;//广告
+    @Autowired
+    protected YlwzbService wzbService;//产品标签
+    @Autowired
+    protected YlwzaService wzaService;//产品标签对应
+    @Autowired
+    protected YlusfService usfService;//规格名称
+    @Autowired
+    protected YljbbService jbbService;//规格产品对应
+    @Autowired
+    protected YlutaService utaService;//订单
+    @Autowired
+    protected YlxtfService xtfService;//产品类别
+    @Autowired
+    protected YljsbService jsbService;//产品
+    @Autowired
+    protected YljscService jscService;
 
 
     //静态公共时间格式对象     调用BaseController.DATE
@@ -103,17 +130,6 @@ public class BaseController {
         return lstThreads;
     }
 
-    protected void addLog(String username,String text){
-//        cdlog log = new cdlog();
-//        log.setLog001(UUID.randomUUID().toString().replaceAll("-", ""));
-//        log.setLog002(username);
-//        log.setLog003(new Date());
-//        log.setLog004(text);
-//        logService.insert(log);
-    }
-
-
-
     protected void delsession(HttpSession session, String fhlx)throws Exception {
         if(fhlx==null||fhlx.indexOf("JG")<0)session.removeAttribute("JGpb");//机构}
         if(fhlx==null||fhlx.indexOf("NJ")<0)session.removeAttribute("NJpb");//年级}
@@ -123,7 +139,7 @@ public class BaseController {
 
     protected void uploadpic(String newFilePath, MultipartFile upfile, String oldFilePath) throws Exception{
         String fpath = LoginController.class.getClass().getResource("/").getPath();
-        fpath = fpath.substring(1,fpath.length())+"static/upload/";
+        fpath = fpath.substring(1,fpath.length())+"static/";
         //删除原文件
         if (oldFilePath != null) {
             File oldFile = new File(fpath+oldFilePath);
@@ -398,4 +414,21 @@ public class BaseController {
             }
         }
     }
+
+    /**
+     * 获取登录用户
+     */
+    protected yluse getUse(HttpServletRequest request) throws Exception {
+        HttpSession session = request.getSession();
+        yluse use=useService.getByid(Decrypt(session.getAttribute("user").toString()));
+        return use;
+    }
+
+    public String getRemortlP(HttpServletRequest request){
+        if (request.getHeader("x-forwarded-for") == null){
+            return request.getRemoteAddr();
+        }
+        return request.getHeader("x-forwarded-for");
+    }
+
 }

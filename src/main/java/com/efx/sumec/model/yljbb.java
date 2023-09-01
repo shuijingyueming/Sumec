@@ -1,6 +1,25 @@
 package com.efx.sumec.model;
 
 public class yljbb {
+    private ylusf usf;
+    private yljsb jsb;
+
+    public ylusf getUsf() {
+        return usf;
+    }
+
+    public void setUsf(ylusf usf) {
+        this.usf = usf;
+    }
+
+    public yljsb getJsb() {
+        return jsb;
+    }
+
+    public void setJsb(yljsb jsb) {
+        this.jsb = jsb;
+    }
+
     private Integer jbb001;
 
     private Integer jbb002;

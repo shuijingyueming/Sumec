@@ -9,6 +9,12 @@
     <result column="XTF005" jdbcType="INTEGER" property="xtf005" />
     <result column="XTF006" jdbcType="VARCHAR" property="xtf006" />
   </resultMap>
+  <resultMap id="BaseResultMap1" type="com.efx.sumec.model.ylxtf"  extends="BaseResultMap">
+    <collection property="xtflist" column="XTF001"  select="com.efx.sumec.dao.ylxtfMapper.selectBysjid"/>
+  </resultMap>
+  <resultMap id="BaseResultMap2" type="com.efx.sumec.model.ylxtf"  extends="BaseResultMap">
+    <association property="xtf" column="XTF003"  select="com.efx.sumec.dao.ylxtfMapper.selectByPrimaryKey"/>
+  </resultMap>
   <sql id="Example_Where_Clause">
     <where>
       <foreach collection="oredCriteria" item="criteria" separator="or">
@@ -71,6 +77,20 @@
     XTF001, XTF002, XTF003, XTF004, XTF005, XTF006
   </sql>
   <select id="selectByExample" parameterType="com.efx.sumec.model.ylxtfExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from ylxtf
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample1" parameterType="com.efx.sumec.model.ylxtfExample" resultMap="BaseResultMap1">
     select
     <if test="distinct">
       distinct
@@ -225,4 +245,16 @@
       XTF006 = #{xtf006,jdbcType=VARCHAR}
     where XTF001 = #{xtf001,jdbcType=INTEGER}
   </update>
+  <select id="selectBysjid" parameterType="java.lang.Integer" resultMap="BaseResultMap1">
+    select
+    <include refid="Base_Column_List" />
+    from ylxtf
+    where XTF003 = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectByPrimaryKey1" parameterType="java.lang.Integer" resultMap="BaseResultMap2">
+    select
+    <include refid="Base_Column_List" />
+    from ylxtf
+    where XTF001 = #{xtf001,jdbcType=INTEGER}
+  </select>
 </mapper>

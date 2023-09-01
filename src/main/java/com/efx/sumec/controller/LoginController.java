@@ -203,66 +203,49 @@ public class LoginController extends BaseController {
                 mav.setViewName("HTlogin");
                 isok = false;
             }else*/ if (null != name && !name.trim().isEmpty() && null != pwd && !pwd.trim().isEmpty()) {
-                //cduse use = useService.getLogin(name, EncrpytUtil.getSHA256(pwd));
-                //System.out.println(EncrpytUtil.getSHA256(pwd)+"-----");
-//                if (null != use) {
-//                        // 会话失效
-//                        session.invalidate();
-//                        // 会话重建
-//                        PubMessage.dlmap.remove(name);
-//                        PubMessage.dlmap.remove(name + "dnumn");
-//                        PubMessage.dlmap.remove(name + "bcode");
-//                        session = request.getSession(true);
-//                        //用户id加密处理并保存
-//                        String inputStr = use.getUse001() + "";
-//                        byte[] encodedData = RSACoder.encryptByPublicKey(inputStr, EncrpytUtil.publicKey);
-//                        session.setAttribute("user", RSACoder.encryptBASE64(encodedData));
-//                        //用户信息
-//                        user user = new user();
-//                        user.setUname(use.getUse005());
-//                        user.setJstype(use.getUse006());
-//                        if (use.getUse006().equals("A")) user.setJs("平台管理员");
-//                        else if (use.getUse006().equals("B")) user.setJs("街道管理员");
-//                        else if (use.getUse006().equals("C")) {
-//                            if(use.getUsd()!=null&&use.getUsd().getUsd014()!="B"){
-//
-//                                user.setJs("学校/社区");
-//                            }
-//                            else if (use.getUse006().equals("D")) user.setJs("老师");
-//                            else if (use.getUse006().equals("E")) user.setJs("网格管理员");
-//                            else user.setJs("微网格管理员");
-//                        }
-//                        cdusa usa = usaService.getByid(use.getUse008());
-//                        user.setJsqx(use.getUse002().equals("admin")?"admin":
-//                                (usa!=null?usa.getUsa002().equals("street")?"street":
-//                                        (usa.getUsa002().equals("school")?"school":(usa.getUsa004()!=null?usa.getUsa004():"")):""));
-//                        if(use.getUsd()!=null){
-//                            user.setJname(use.getUsd().getUsd002());
-//                            user.setJtype(use.getUsd().getUsd014());
-//                        }
-//                        session.setAttribute("umsg", user);
-//                        if(use.getUsd()!=null&&use.getUsd().getUsd014()!="B"){
-//                            mav.setViewName("redirect:/toxxHt/toHTindex");
-//                        }else{
-//                            mav.setViewName("redirect:/toHt/toHTindex");
-//                        }
-//                        addLog(use.getUse002(), "登录管理系统");
-//                        isok = true;
-//                } else {
-//                    if (PubMessage.dlmap.get(name + "dnumn") == null) PubMessage.dlmap.put(name + "dnumn", 1);
-//                    else
-//                        PubMessage.dlmap.put(name + "dnumn", Integer.parseInt(PubMessage.dlmap.get(name + "dnumn").toString()) + 1);
-//
-//                    if (Integer.parseInt(PubMessage.dlmap.get(name + "dnumn").toString()) >= 5) {
-//                        //保存一个时间
-//                        PubMessage.dlmap.put(name, TIMEHOUR.format(new Date()));
-//                    }
-//                    session.setAttribute("dnumn", PubMessage.dlmap.get(name + "dnumn").toString());
-//                    session.setAttribute("uname", name);
-//                    mav.addObject("error", "用户名或密码错误");
-//                    mav.setViewName("HTlogin");
-//                    isok = false;
-//                }
+                yluse use = useService.getLogin(name, EncrpytUtil.getSHA256(pwd));
+//                System.out.println(EncrpytUtil.getSHA256(pwd)+"-----");
+                if (null != use) {
+                    // 会话失效
+                    session.invalidate();
+                    // 会话重建
+                    PubMessage.dlmap.remove(name);
+                    PubMessage.dlmap.remove(name + "dnumn");
+                    PubMessage.dlmap.remove(name + "bcode");
+                    session = request.getSession(true);
+                    //用户id加密处理并保存
+                    String inputStr = use.getUse001() + "";
+                    byte[] encodedData = RSACoder.encryptByPublicKey(inputStr, EncrpytUtil.publicKey);
+                    session.setAttribute("user", RSACoder.encryptBASE64(encodedData));
+                    use.setUse009(new Date());
+                    use.setUse006(getRemortlP(request));
+                    useService.update(use);
+                    //用户信息
+                    user user = new user();
+                    ylxxz xxz = xxzService.selGetAll();
+                    user.setUname(use.getUse002());
+                    user.setAdd(xxz.getXxz013());
+                    user.setWeb(xxz.getXxz010());
+                    user.setEamil(xxz.getXxz011());
+                    user.setTel(xxz.getXxz012());
+                    session.setAttribute("umsg", user);
+                    mav.setViewName("redirect:/toHt/toHTindex");
+                    isok = true;
+                } else {
+                    if (PubMessage.dlmap.get(name + "dnumn") == null) PubMessage.dlmap.put(name + "dnumn", 1);
+                    else
+                        PubMessage.dlmap.put(name + "dnumn", Integer.parseInt(PubMessage.dlmap.get(name + "dnumn").toString()) + 1);
+
+                    if (Integer.parseInt(PubMessage.dlmap.get(name + "dnumn").toString()) >= 5) {
+                        //保存一个时间
+                        PubMessage.dlmap.put(name, TIMEHOUR.format(new Date()));
+                    }
+                    session.setAttribute("dnumn", PubMessage.dlmap.get(name + "dnumn").toString());
+                    session.setAttribute("uname", name);
+                    mav.addObject("error", "用户名或密码错误");
+                    mav.setViewName("HTlogin");
+                    isok = false;
+                }
             } else {
                 mav.setViewName("HTlogin");
             }
@@ -292,4 +275,155 @@ public class LoginController extends BaseController {
         return mav;
     }
 
+    @RequestMapping("/qhzh")
+    public ModelAndView qhzh(String type) {
+        ModelAndView mav = new ModelAndView();
+        mav.addObject("type", type);
+        mav.setViewName("qhzh");
+        return mav;
+    }
+
+    @RequestMapping("/grxx")
+    public ModelAndView grxx() throws Exception {
+        ModelAndView mav = new ModelAndView();
+        HttpSession session = request.getSession();
+        yluse user = useService.getByid(Decrypt(session.getAttribute("user").toString()));
+        mav.addObject("user", user);
+        mav.setViewName("grxx");
+        return mav;
+    }
+
+    /**
+     * 切换账号登录
+     */
+    @ResponseBody
+    @RequestMapping(value = "/tologin1")
+    public ModelAndView tologin1() throws Exception {
+        response.setContentType("text/html;charset=UTF-8");
+        HttpSession session = request.getSession();
+        String name = request.getParameter("username");
+        String pwd = request.getParameter("userpwd");
+        name = EncrpytUtil.decode(name);
+        pwd = EncrpytUtil.decode(pwd);
+        yluse use = useService.getLogin(name, EncrpytUtil.getSHA256(pwd));
+        Map map = new HashMap();
+        if(null!=use){
+            use.setUse009(new Date());
+            useService.update(use);
+            // 会话失效
+            session.invalidate();
+            // 会话重建
+            session=request.getSession(true);
+            String inputStr = use.getUse001() + "";
+            byte[] encodedData = RSACoder.encryptByPublicKey(inputStr, EncrpytUtil.publicKey);
+            session.setAttribute("user", RSACoder.encryptBASE64(encodedData));
+            //用户信息
+            user user = new user();
+            ylxxz xxz = xxzService.selGetAll();
+            user.setUname(use.getUse002());
+            user.setAdd(xxz.getXxz013());
+            user.setWeb(xxz.getXxz010());
+            user.setEamil(xxz.getXxz011());
+            user.setTel(xxz.getXxz012());
+            session.setAttribute("umsg", user);
+            map.put("url", "/toHt/toHTindex");
+            map.put("msg", "0");
+        }else{
+            map.put("msg", "用户名或密码错误");
+        }
+        response.getWriter().print(new JSONObject(map));
+        return null;
+    }
+
+    /**
+     * 修改密码
+     */
+    @RequestMapping(value = "/updatePwd")
+    public ModelAndView updatePwd() throws Exception {
+        ModelAndView mav = new ModelAndView();
+        response.setContentType("text/html;charset=utf-8");
+        HttpSession session = request.getSession();
+        if (session.getAttribute("user") == null) {
+            SystemTZYM(response, "登录失效");
+            return null;
+        }
+        Map map = new HashMap();
+        Integer userid = Decrypt(session.getAttribute("user").toString());
+        yluse useNow =useService.getByid(userid);
+        String jiumm = request.getParameter("jiumm");
+        String xinmm = request.getParameter("xinmm");
+        jiumm =  EncrpytUtil.decode(jiumm);
+        xinmm = EncrpytUtil.decode(xinmm);
+//        System.out.println(EncrpytUtil.getSHA256(jiumm));
+        if(EncrpytUtil.getSHA256(jiumm).equals(useNow.getUse003())){
+            try{
+                useNow.setUse003(EncrpytUtil.getSHA256(xinmm));
+                useService.update(useNow);
+                map.put("msg", "0");
+            }catch(Exception e){
+                map.put("msg", "1");
+                e.printStackTrace();
+            }
+            response.getWriter().print(new JSONObject(map));
+        }else{
+            map.put("msg", "4");
+            response.getWriter().print(new JSONObject(map));
+        }
+        return null;
+    }
+
+    /**
+     * 判断账户名称是否重复
+     */
+    @ResponseBody
+    @RequestMapping(value = "/bqname",produces= MediaType.APPLICATION_JSON_VALUE+";charset=utf-8")
+    public boolean bqname(HttpServletRequest request,HttpServletResponse response){
+        Integer id=request.getParameter("id").isEmpty()?0:Integer.valueOf(request.getParameter("id"));
+        ylwzb item=wzbService.selectByName(request.getParameter("name"));
+        if((id==0 && item!=null)||(id!=0 && item!=null && id!=item.getWzb001())){
+            return false;
+        }else{
+            return true;
+        }
+    }
+    /**
+     * 判断账户名称是否重复
+     */
+    @ResponseBody
+    @RequestMapping(value = "/spname",produces= MediaType.APPLICATION_JSON_VALUE+";charset=utf-8")
+    public boolean spname(HttpServletRequest request,HttpServletResponse response){
+        Integer id=request.getParameter("id").isEmpty()?0:Integer.valueOf(request.getParameter("id"));
+        ylusf item=usfService.selectByName(request.getParameter("name"));
+        if((id==0 && item!=null)||(id!=0 && item!=null && id!=item.getUsf001())){
+            return false;
+        }else{
+            return true;
+        }
+    }
+
+    /**
+     * 判断账户名称是否重复
+     */
+    @ResponseBody
+    @RequestMapping(value = "/cpname",produces= MediaType.APPLICATION_JSON_VALUE+";charset=utf-8")
+    public boolean cpname(HttpServletRequest request,HttpServletResponse response){
+        Integer id=request.getParameter("id").isEmpty()?0:Integer.valueOf(request.getParameter("id"));
+        yljsb item=jsbService.selectByName(request.getParameter("name"));
+        if((id==0 && item!=null)||(id!=0 && item!=null && id!=item.getJsb001())){
+            return false;
+        }else{
+            return true;
+        }
+    }
+
+    /**
+     * 返回分类
+     */
+    @ResponseBody
+    @RequestMapping(value = "/getallfl",produces= MediaType.APPLICATION_JSON_VALUE+";charset=utf-8")
+    public String getallfl(HttpServletRequest request, HttpServletResponse response) throws Exception {
+        HashMap result = new HashMap();
+        result.put("list", xtfService.selectBysjid(Integer.valueOf(request.getParameter("sjid"))));
+        return JSON.toJSONString(result);
+    }
 }

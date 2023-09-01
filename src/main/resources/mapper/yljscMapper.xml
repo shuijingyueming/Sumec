@@ -208,4 +208,10 @@
       JSC005 = #{jsc005,jdbcType=VARCHAR}
     where JSC001 = #{jsc001,jdbcType=INTEGER}
   </update>
+  <select id="selectBycpid" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from yljsc
+    where JSC002 = #{jsc001,jdbcType=INTEGER}
+  </select>
 </mapper>

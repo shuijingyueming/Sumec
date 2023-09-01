@@ -27,4 +27,5 @@ public interface yljscMapper {
     int updateByPrimaryKeySelective(yljsc record);
 
     int updateByPrimaryKey(yljsc record);
+    yljsc  selectBycpid(Integer jsc002);
 }

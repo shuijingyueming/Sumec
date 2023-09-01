@@ -1,0 +1,316 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <base th:href="${#request.getContextPath()}+'/'">
+
+    <title>平台账户信息管理</title>
+    <meta http-equiv="Cache-Control" content="no-siteapp"/>
+    <meta http-equiv="pragma" content="no-cache"/>
+    <meta http-equiv="cache-control" content="no-cache"/>
+    <meta http-equiv="expires" content="0"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/tables/datatables.min.css">
+    <link rel="stylesheet" href="assets/css/tables/datatables-http.min.css">
+    <link rel="stylesheet" href="assets/css/tables/buttons.dataTables.min.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/tables/jsgrid/demos.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/tables/jsgrid/jsgridui.css">
+    <link rel="stylesheet" href="assets/css/skin/all-skins.css">
+    <link rel="stylesheet" href="assets/css/general/style.css">
+    <link rel="stylesheet" href="assets/css/sidebar/side-nav.css">
+    <link rel="stylesheet" href="assets/css/fonts/fonts-style.css">
+    <script type="text/javascript" src="assets/js/jquery-1.8.3.min.js"></script>
+
+    <link rel="stylesheet" href="assets/css/nanoscroller/nanoscroller.css">
+    <link rel="stylesheet" href="static/css/pubcss.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/tables/jsgrid/jsgrid.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/tables/jsgrid/theme.css">
+    <script src="assets/lib/layui/layui.js" charset="utf-8"></script>
+    <script type="text/javascript" src="static/js/jsencrypt.min.js"></script>
+    <script type="text/javascript" src="static/js/pubjs.js"></script>
+    <style>
+        .wimg{
+            width: 80px;
+        }
+    </style>
+    <!-- 富文本编辑器 -->
+    <link href="kindeditor/themes/default/default.css" rel="stylesheet" />
+    <script src="kindeditor/kindeditor-all-min.js"></script>
+    <script src="kindeditor/lang/zh_CN.js"></script>
+    <script type="text/javascript">
+        //富文本编辑器
+         $(function() {
+            KindEditor.ready(function (K) {
+                KE = K.create('#t2', {
+                    allowFileManager: true, //浏览图片空间
+                    filterMode: false, //HTML特殊代码过滤
+                    // uploadJson:"upload",
+                    items: ["source", "|", "undo", "redo", "|", "preview",
+                        /* "print", */ "template", /* "code",  */"cut",/* "copy", "paste", */
+                        "plainpaste", "wordpaste","|",
+                        "justifyleft", "justifycenter", "justifyright", "justifyfull", "insertorderedlist","insertunorderedlist", "indent", "outdent", "subscript", "superscript", "clearhtml","quickformat", "selectall", "|",
+                        "fullscreen", "/", "formatblock", "fontname", "fontsize", "|",
+                        "forecolor", "hilitecolor", "bold", "italic", "underline", "strikethrough", "lineheight","removeformat", "|","image",
+                        /*  "multiimage", "flash", "media",  "insertfile", "table",*/
+                        "hr","emoticons", /* "baidumap",  */"pagebreak",
+                        /* "anchor", "link", "unlink", "|","about" */],
+                    afterBlur: function () { this.sync(); }, //编辑器失去焦点(blur)时执行的回调函数（将编辑器的HTML数据同步到textarea）
+                    afterUpload: function (url, data, name) { //上传文件后执行的回调函数，必须为3个参数
+                        if (name == "image" || name == "multiimage") { //单个和批量上传图片时
+                            var img = new Image(); img.src = url;
+                            img.onload = function () { //图片必须加载完成才能获取尺寸
+                                if (img.width > 100) {
+                                    KE.html(KE.html().replace('<img src="' + url + '"', '<img src="' + url + '" style="max-width:100%"'));
+                                }
+                            };
+                        }
+                    },
+                    width:"100%",
+                    height:"500px"
+                });
+            });
+        });
+    </script>
+</head>
+<input type="hidden" id="pages" name="pages" th:value="${pageobj.currentPage}" />
+<input type="hidden" id="counts" name="counts" th:value="${pageobj.pageCount}" />
+<input type="hidden" th:value="${msg}" id="msg">
+<body class="sidebar-mini fixed skin-blue">
+<div class="content-wrapper">
+    <section class="content-header">
+        <h1>产品管理<small></small>
+        </h1>
+        <ol class="breadcrumb">
+            <li><a href="toHt/indexi"><i class="fa fa-dashboard"></i> 首页</a></li>
+            <li>产品管理</li>
+            <li class="active">产品管理</li>
+        </ol>
+    </section>
+    <!-- Serach Starts-->
+    <section class="content" id="wrhead">
+        <div class="cardbg" style="padding:1rem;">
+            <form>
+               <div class="form-row">
+                    <div class="col-xl-2 col-lg-3 col-12">
+                        <input id="name" th:value="${pageobj.othersql}" type="text" class="form-control" placeholder="标签名称模糊查询">
+                    </div>
+                    <button onclick="xxcx()" type="button" class="col-xl-1 col-lg-1 col-12 btn btn-primary">查询</button>
+                </div>
+            </form>
+        </div>
+    </section>
+    <!-- Serach Content Ends-->
+    <!-- DataTable With Button Example Section Starts -->
+    <div class="card panel panel-default" id="wrapp">
+        <div class="jsgrid collapse show p-4" data-parent="#accordion">
+            <table id="bqexm" class="table table-striped table-bordered dt-responsive nowrap" style="width:100%">
+                <thead>
+                <tr>
+                    <th><input type="checkbox" id="chkbox"/></th>
+                    <th>序号</th>
+                    <th>产品名称</th>
+                    <th style="color:#FFF;">操作</th>
+                </tr>
+                </thead>
+                <tbody th:switch = "${ pageobj.recordCount gt 0 }">
+                <th:block th:case="true">
+                    <tr  th:each="item,stat:${pageobj.resultList}">
+                        <td><input type="checkbox" name="cbox" th:date-id="${item.jsb001}"/></td>
+                        <td th:text="${(pageobj.currentPage-1)*pageobj.pageSize+stat.index+1}"></td>
+                        <td th:text="${item.jsb002}"></td>
+                        <td>
+                           <!-- <input th:onclick="toxq([[${item.jsb001}]])" class="jsgrid-button jsgrid-search-button" type="button" title="详情">-->
+                            <input th:onclick="edit([[${item.jsb001}]])" class="jsgrid-button jsgrid-edit-button" type="button" title="编辑">
+                            <input th:onclick="del([[${item.jsb001}]])" class="jsgrid-button jsgrid-delete-button" type="button" title="删除">
+                        </td>
+                    </tr>
+                </th:block>
+                <tr th:case="false">
+                    <td></td> <td></td> <td></td> <td></td>
+                </tr>
+                </tbody>
+            </table>
+            <div class="page jsgrid-pager-container" style="display: block;">
+            </div>
+        </div>
+    </div>
+    <!-- DataTable With Scroll Example Section Starts -->
+</div>
+<!-- 编辑滑动页 -->
+<div id="active" class="model">
+    <div id="adiv" class="am">
+        <!-- Form Formatter Section Starts -->
+        <div class="cardbg">
+            <h6 id="mtitle" class="title-inner text-uppercase" style="padding-top:10px;">街道编辑</h6>
+            <form class="layui-form" method="post" id="submitForm" action="toPr/xgcp" enctype="multipart/form-data">
+                <input type="hidden" id="id" name="id" />
+                <input type="hidden" name="pages" th:value="${pageobj.currentPage}" />
+                <input type="hidden" name="name" th:value="${pageobj.othersql}" />
+                <div class="row">
+                    <div class="col-md-6 col-xl-4">
+                        <div class="form-group">
+                            <label>产品名称</label>
+                            <input id="t1" name="t1" type="text" class="form-control input-0" placeholder="请填写产品名称">
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-xl-4">
+                        <div class="form-group">
+                            <label>价格</label>
+                            <input id="t7" name="t7" type="text" class="form-control input-0" placeholder="请填写价格">
+                        </div>
+                    </div>
+                </div>
+                <div class="row t3">
+                    <div class="col-md-6 col-xl-4">
+                        <label>一级类别</label>
+                        <div class="form-group">
+                            <select id="tyj" name="t31"  class="select2 form-control"lay-search>
+                                <option value="">请选择类别</option>
+                                <th:block th:each="item,stat:${xtflist}">
+                                <option th:value="${item.xtf001}" >[[${item.xtf002}]]</option>
+                                </th:block>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-xl-4">
+                        <label>二级类别</label>
+                        <div class="form-group">
+                            <select id="tej" name="t32"  class="select2 form-control"lay-search>
+                                <option value="">请选择类别</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-xl-4">
+                        <label>三级类别</label>
+                        <div class="form-group">
+                            <select id="tsj" name="t33"  class="select2 form-control"lay-search>
+                                <option value="">请选择类别</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 col-xl-4">
+                        <div class="form-group">
+                            <label>上架日期</label>
+                            <input id="t4" name="t4" type="date" class="form-control input-0" placeholder="请填写上架日期">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 col-xl-4">
+                        <div class="form-group">
+                            <label>列表简介</label>
+                            <textarea id="t5" name="t5" style="height: 100px;width: 500px;"></textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 col-xl-4">
+                        <div class="form-group">
+                            <label>详情简介</label>
+                            <textarea id="t6" name="t6" style="height: 100px;width: 500px;"></textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 col-xl-4">
+                        <div class="form-group">
+                            <label>产品详情</label>
+                            <textarea id="t2" name="t2"></textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 col-xl-4">
+                        <input type="hidden" id="t8" name="t8" lay-verify="t8" value="">
+                        <label>选择产品标签</label>
+                        <div class="form-group">
+                            <select id="bq" name="bq"  class="select2 form-control" lay-search>
+                                <option value="">请选择</option>
+                                <th:block th:each="item,stat:${wzblist}">
+                                    <option th:value="${item.wzb001}" >[[${item.wzb002}]]</option>
+                                </th:block>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 col-xl-12">
+                        <div class="form-group bqdiv" id="alllzbzlx"></div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div id="time">
+                        <div class="row timemode">
+                            <div class="col-md-5 col-sm-5">
+                                <label>选择规格名称</label>
+                                <div class="form-group">
+                                    <select name="ca"  class="select2 form-control" lay-search>
+                                        <option value="">请选择</option>
+                                        <th:block th:each="item,stat:${usflist}">
+                                            <option th:value="${item.usf001}" >[[${item.usf002}]]</option>
+                                        </th:block>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-3 col-sm-3">
+                                <div class="form-group">
+                                    <label class="layui-form-label">规格内容：</label>
+                                    <input name="t9" type="text" class="form-control input-0" placeholder="请填写规格内容">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <button type="button" class="effect-btn btn btn-light mt-2 mr-2 sm-btn addtime" onclick="addtime()">继续添加</button>
+                </div>
+                <div class="row" style="margin-top:2px;">
+                    <div class="col-xl-8 col-lg-8 col-md-12 col-sm-12 col-12">
+                        <label>选择产品图片<button type="button" class="effect-btn btn btn-light" style="margin-left:30px;width:80px;" onclick="$('#t11').click();">选择文件</button></label>
+                        <input type="file" id="t11" name="t11" style="display: none;" onchange="showpdtpgs('11')" multiple/>
+                        <div id="p11">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 col-xl-12" style="padding-top: 20px;">
+                        <button type="button" class="btn btn-outline-secondary" onclick="clean()">取消</button>
+                        <button type="submit" lay-submit="" class="btn btn-success">提交</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <!-- Form Formatter Section Ends -->
+    </div>
+</div>
+<!-- jQuery CDN - Slim version (=without AJAX) -->
+<script src="assets/js/jquery/slim.min.js"></script>
+<!-- Popper.JS -->
+<script src="assets/js/jquery/popper.min.js"></script>
+<!-- Bootstrap JS -->
+<script src="assets/js/jquery/jquery.min.js"></script>
+<script src="assets/js/bootstrap.min.js"></script>
+<!-- Page JS -->
+<script src="assets/js/tables/datatables.min.js"></script>
+<script src="assets/js/tables/dataTables.buttons.min.js"></script>
+<script src="assets/js/tables/jszip.min.js"></script>
+<script src="assets/js/tables/pdfmake.min.js"></script>
+<script src="assets/js/tables/vfs_fonts.js"></script>
+<script src="assets/js/tables/buttons.html5.min.js"></script>
+<script src="assets/js/tables/buttons.print.min.js"></script>
+<script src="assets/js/tables/datatable.js"></script>
+<!-- Theme JS -->
+<script src="assets/js/nanoscroller/nanoscroller.js"></script>
+<script src="assets/js/custom/theme.js"></script>
+<!-- validate JS 验证-->
+<script type="text/javascript" src="assets/jquery-validate/jquery.validate.js"></script>
+<script type="text/javascript" src="assets/jquery-validate/validate-methods.js"></script>
+<script type="text/javascript" src="assets/jquery-validate/localization/messages_zh.js"></script>
+<script src="pagejs/htfy.js"></script>
+<script src="pagejs/htfy.js"></script>
+<script src="pagejs/HTsel.js"></script>
+<script src="pagejs/HTcp.js"></script>
+</body>
+</html>

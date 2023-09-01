@@ -3,6 +3,17 @@ package com.efx.sumec.model;
 import java.util.Date;
 
 public class yljse {
+
+    private yluse use;
+
+    public yluse getUse() {
+        return use;
+    }
+
+    public void setUse(yluse use) {
+        this.use = use;
+    }
+
     private Integer jse001;
 
     private String jse002;

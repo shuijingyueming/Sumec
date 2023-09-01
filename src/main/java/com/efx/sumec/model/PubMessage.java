@@ -32,5 +32,13 @@ public class PubMessage {
         PubMessage.refresh_token = refresh_token;
     }
 
+    private static ylxxz xxz;
 
+    public static ylxxz getXxz() {
+        return xxz;
+    }
+
+    public static void setXxz(ylxxz xxz) {
+        PubMessage.xxz = xxz;
+    }
 }
