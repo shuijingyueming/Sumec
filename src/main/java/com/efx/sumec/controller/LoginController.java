@@ -59,13 +59,13 @@ public class LoginController extends BaseController {
     public ModelAndView toLoginnew() throws Exception {
         ModelAndView mav = new ModelAndView();
         HttpSession session = request.getSession();
-        if (null == session.getAttribute("user")) {
+      /*  if (null == session.getAttribute("user")) {
             mav.addObject("error", request.getParameter("error"));
             session.setAttribute("dnumn", 0);
             mav.setViewName("HTlogin");
             return mav;
-        }
-        mav.setViewName("redirect:/toHt/toIndex");
+        }*/
+        mav.setViewName("redirect:/toWeb/toindex");
         return mav;
     }
 

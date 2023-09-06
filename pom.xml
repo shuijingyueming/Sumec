@@ -254,6 +254,7 @@
 
 
     </dependencies>
+
     <build>
         <resources>
             <resource>
@@ -308,7 +309,7 @@
                     <archive>
                         <manifest>
                             <!-- 指定程序入口 -->
-                            <mainClass>com.efx.quality.QualityApplication</mainClass>
+                            <mainClass>com.efx.sumec.QualityApplication</mainClass>
                             <!-- 打包时 MANIFEST.MF文件不记录的时间戳版本 -->
                             <useUniqueVersions>false</useUniqueVersions>
                             <addClasspath>true</addClasspath>

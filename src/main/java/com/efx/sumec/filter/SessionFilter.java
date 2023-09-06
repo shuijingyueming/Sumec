@@ -10,9 +10,9 @@ import java.io.PrintWriter;
 public class SessionFilter implements Filter {
     String NO_LOGIN = "您还未登录";
     //不需要登录就可以访问的路径(比如:注册登录等)
-    String[] includeUrls = new String[]{"/toLogin"};
+//    String[] includeUrls = new String[]{"/toLogin"};
 
-
+    String[] includeUrls = new String[]{"/toWeb/toindex"};
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
         HttpServletRequest request = (HttpServletRequest) servletRequest;
@@ -42,7 +42,8 @@ public class SessionFilter implements Filter {
                     out.println("<script type='text/javascript' src='/assets/js/cookie.js'></script>");
                     out.println("<script>");
                     out.println("deleteCookie('tab_list');deleteCookie('left_menu_father');deleteCookie('left_menu_son');");
-                    out.println("window.parent.location='/toLogin?error=" + this.NO_LOGIN + "';");
+//                    out.println("window.parent.location='/toLogin?error=" + this.NO_LOGIN + "';");
+                    out.println("window.parent.location='/toWeb/toindex';");
                     out.println("</script>");
                     out.println("</html>");
                     out.flush();

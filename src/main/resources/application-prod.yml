@@ -6,11 +6,11 @@ server:
     max-http-form-post-size: 10240000
 
 #  安全域名
-ssl:
-  key-store: classpath:9650057_xhh.nbefx.com.pfx
-  key-store-password: xtu54t3u
-  key-store-type: PKCS12
-  enabled: true
+#ssl:
+#  key-store: classpath:9650057_xhh.nbefx.com.pfx
+#  key-store-password: xtu54t3u
+#  key-store-type: PKCS12
+#  enabled: true
 #  servlet:
 #    context-path: /dlcon
 spring:
@@ -18,12 +18,12 @@ spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     type: com.alibaba.druid.pool.DruidDataSource
-    url: jdbc:mysql://localhost:3306/xhhdata?useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Shanghai
+    url: jdbc:mysql://localhost:3306/smddata?useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Shanghai
     username: root
     password: Q1w2e3r4
     jdbcurl: localhost
     jdbcdk: 3306
-    dataname: xhhdata
+    dataname: smddata
     # 初始化大小，最小，最大
     initial-size: 5
     min-idle: 5
@@ -49,7 +49,7 @@ mybatis-plus:
   #指明mapper.xml扫描位置(classpath* 代表编译后类文件根目录)
   mapper-locations: classpath*:/mapper/**Mapper.xml
   #指明实体扫描(多个package用逗号或者分号分隔)
-  typeAliasesPackage: com.efx.quality.model;
+  typeAliasesPackage: com.efx.sumec.model;
   global-config:
     #主键类型 0:数据库ID自增, 1:用户输入ID,2:全局唯一ID (数字类型唯一ID), 3:全局唯一ID UUID
     id-type: 0

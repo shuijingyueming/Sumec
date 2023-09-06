@@ -4,8 +4,6 @@ import com.efx.sumec.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 import org.thymeleaf.TemplateEngine;
 
@@ -32,10 +30,11 @@ public class WebController extends BaseController {
         HttpSession session = request.getSession();
         if(session.getAttribute("qtuser")==null){
             user user = getUser() ;
-            session.setAttribute("qtuser", user);
             if(user.getZt().equals("B")){
-                mav.setViewName("error/update");
+                mav.setViewName("405");
                 return mav;
+            }else{
+                session.setAttribute("qtuser", user);
             }
         }
         mav.addObject("item", jseService.selGetAll());
@@ -50,10 +49,11 @@ public class WebController extends BaseController {
         HttpSession session = request.getSession();
         if(session.getAttribute("qtuser")==null){
             user user = getUser() ;
-            session.setAttribute("qtuser", user);
             if(user.getZt().equals("B")){
-                mav.setViewName("error/update");
+                mav.setViewName("405");
                 return mav;
+            }else{
+                session.setAttribute("qtuser", user);
             }
         }
         Integer yjid=(null!=request.getParameter("yjid")&&!request.getParameter("yjid").isEmpty()?Integer.valueOf(request.getParameter("yjid")):null);
@@ -74,10 +74,11 @@ public class WebController extends BaseController {
         HttpSession session = request.getSession();
         if(session.getAttribute("qtuser")==null){
             user user = getUser() ;
-            session.setAttribute("qtuser", user);
             if(user.getZt().equals("B")){
-                mav.setViewName("error/update");
+                mav.setViewName("405");
                 return mav;
+            }else{
+                session.setAttribute("qtuser", user);
             }
         }
         mav.addObject("item", jsbService.getByid(Integer.valueOf(request.getParameter("id"))));
@@ -90,10 +91,11 @@ public class WebController extends BaseController {
         HttpSession session = request.getSession();
         if(session.getAttribute("qtuser")==null){
             user user = getUser() ;
-            session.setAttribute("qtuser", user);
             if(user.getZt().equals("B")){
-                mav.setViewName("error/update");
+                mav.setViewName("405");
                 return mav;
+            }else{
+                session.setAttribute("qtuser", user);
             }
         }
         mav.addObject("item", jseService.selGetAll());
@@ -107,10 +109,11 @@ public class WebController extends BaseController {
         HttpSession session = request.getSession();
         if(session.getAttribute("qtuser")==null){
             user user = getUser() ;
-            session.setAttribute("qtuser", user);
             if(user.getZt().equals("B")){
-                mav.setViewName("error/update");
+                mav.setViewName("405");
                 return mav;
+            }else{
+                session.setAttribute("qtuser", user);
             }
         }
         mav.setViewName("QTcontcat");
@@ -123,10 +126,11 @@ public class WebController extends BaseController {
         HttpSession session = request.getSession();
         if(session.getAttribute("qtuser")==null){
             user user = getUser() ;
-            session.setAttribute("qtuser", user);
             if(user.getZt().equals("B")){
-                mav.setViewName("error/update");
+                mav.setViewName("405");
                 return mav;
+            }else{
+                session.setAttribute("qtuser", user);
             }
         }
         mav.addObject("item", jsbService.getByid(Integer.valueOf(request.getParameter("id"))));
@@ -141,10 +145,11 @@ public class WebController extends BaseController {
         HttpSession session = request.getSession();
         if(session.getAttribute("qtuser")==null){
             user user = getUser() ;
-            session.setAttribute("qtuser", user);
             if(user.getZt().equals("B")){
-                mav.setViewName("error/update");
+                mav.setViewName("405");
                 return mav;
+            }else{
+                session.setAttribute("qtuser", user);
             }
         }
         yluta item=new yluta();

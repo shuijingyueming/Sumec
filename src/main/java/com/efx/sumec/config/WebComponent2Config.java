@@ -15,7 +15,7 @@ public class WebComponent2Config {
         registration.setFilter(new SessionFilter());
         // 设置过滤器的URL模式
         registration.addUrlPatterns("/toHt/*");
-        registration.addUrlPatterns("/toJg/*");
+        registration.addUrlPatterns("/toWeb/*");
         registration.setName("sessionFilter");
         registration.setOrder(1);
         return registration;
