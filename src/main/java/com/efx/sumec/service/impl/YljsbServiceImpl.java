@@ -40,6 +40,11 @@ public class YljsbServiceImpl implements YljsbService {
         yljsbExample e1 = new yljsbExample();
         Criteria c = e1.createCriteria();
         if(pb.getOthersql()!=null) c.andJsb002Like("%"+pb.getOthersql()+"%");
+        if(pb.getOthersql1()!=null){
+            c.andSql("((jsb004="+pb.getOthersql1()+
+                    ") or ((select xtf003 from ylxtf where xtf001=jsb004 and xtf003="+pb.getOthersql1()+")="+pb.getOthersql1()+
+                    ") or ((select t1.xtf003 from ylxtf LEFT JOIN ylxtf as t1 on t1.xtf001=ylxtf.xtf003 where t1.xtf003 ="+pb.getOthersql1()+" and ylxtf.xtf001=jsb004)="+pb.getOthersql1()+"))");
+        }
         return queryByPage(pb,e1);
     }
 
@@ -55,7 +60,7 @@ public class YljsbServiceImpl implements YljsbService {
 
     @Override
     public yljsb insert(yljsb jsb) {
-        jsbMapper.insert(jsb);
+        jsbMapper.insertSelective(jsb);
         return jsb;
     }
 
@@ -65,7 +70,7 @@ public class YljsbServiceImpl implements YljsbService {
         Criteria c = e1.createCriteria();
         c.andSql("((jsb004="+id+
                 ") or ((select xtf003 from ylxtf where xtf001=jsb004 and xtf003="+id+")="+id+
-                ") or ((select (select t1.xtf003 from ylxtf as t1 where t1.xtf001=xtf003) from ylxtf where (select t1.xtf003 from ylxtf as t1 where t1.xtf001=xtf003)="+id+" and xtf001=jsb004)="+id+"))");
+                ") or ((select t1.xtf003 from ylxtf LEFT JOIN ylxtf as t1 on t1.xtf001=ylxtf.xtf003 where t1.xtf003 ="+id+" and ylxtf.xtf001=jsb004)="+id+"))");
         List<yljsb> list=jsbMapper.selectByExample(e1);
         for(yljsb jsb:list){
             jsb.setJsb004(null);
@@ -94,6 +99,25 @@ public class YljsbServiceImpl implements YljsbService {
         c.andJsb002EqualTo(name);
         List<yljsb> list=jsbMapper.selectByExample(e1);
         return list.size()>0?list.get(0):null;
+    }
+
+    @Override
+    public List<yljsb> serachAll(Integer yjid, Integer ejid, Integer sjid, Integer bqid, Integer lx) {
+        yljsbExample e1 = new yljsbExample();
+        Criteria c = e1.createCriteria();
+        if(sjid!=null){
+            c.andJsb004EqualTo(sjid);
+        }else if(ejid!=null){
+            c.andSql("((jsb004="+ejid+
+                    ") or ((select xtf003 from ylxtf where xtf001=jsb004 and xtf003="+ejid+")="+ejid+ "))");
+        }else if(yjid!=null){
+            c.andSql("((jsb004="+yjid+
+                    ") or ((select xtf003 from ylxtf where xtf001=jsb004 and xtf003="+yjid+")="+yjid+
+                    ") or ((select t1.xtf003 from ylxtf LEFT JOIN ylxtf as t1 on t1.xtf001=ylxtf.xtf003 where t1.xtf003 ="+yjid+" and ylxtf.xtf001=jsb004)="+yjid+"))");
+        }
+        if(bqid!=null)c.andSql("((select count(*) from ylwza where wza002=jsb001 and wza003='"+bqid+"')>0)");
+        if(lx !=null)c.andJsb011EqualTo(lx);
+        return jsbMapper.selectByExample1(e1);
     }
 
 

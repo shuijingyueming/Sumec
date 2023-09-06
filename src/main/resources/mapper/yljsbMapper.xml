@@ -135,7 +135,7 @@
       #{jsb016,jdbcType=VARCHAR}, #{jsb017,jdbcType=VARCHAR}, #{jsb018,jdbcType=VARCHAR}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.efx.sumec.model.yljsb">
+  <insert id="insertSelective" parameterType="com.efx.sumec.model.yljsb" useGeneratedKeys="true" keyProperty="jsb001">
     insert into yljsb
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="jsb001 != null">
@@ -431,6 +431,20 @@
       <include refid="Example_Where_Clause" />
     </if>
     <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample1" parameterType="com.efx.sumec.model.yljsbExample" resultMap="BaseResultMap1">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from yljsb
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
       order by ${orderByClause}
     </if>
   </select>

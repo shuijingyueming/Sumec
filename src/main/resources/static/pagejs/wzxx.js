@@ -58,7 +58,9 @@ $(function(){
             t8: {
                 required : true
             },
-
+            t17: {
+                required : true
+            },
         },
         submitHandler: function(form) {
             var index = window.parent.tis("保存中");
@@ -150,6 +152,35 @@ function pdtpgs2(){
             file.value="";
             $("#input2").val("");
             layer.msg("只能上传以.ico结尾的文件");
+            return;
+        }
+    }
+}
+
+//判断图片
+function pdtpgs3(){
+    var filePath = ['.jpg','.png'];
+    var file = document.getElementById("up3").files[0];
+    if(file){
+        var filename = file.name;
+        var filejw = filename.substring(filename.lastIndexOf("."));
+        var pd = false;
+        for(var i=0;i<filePath.length;i++){
+            if(filejw==filePath[i]){
+                var reader = new FileReader();
+                reader.readAsDataURL(file);
+                reader.onload = function(e) {
+                    var data = e.target.result;
+                    $("#shtp3").attr("src",data);
+                };
+                pd =  true;
+                return;
+            }
+        }
+        if(!pd){
+            file.value="";
+            $("#input1").val("");
+            layer.msg("只能上传以.jpg、.png结尾的文件");
             return;
         }
     }

@@ -30,4 +30,6 @@ public interface YljsbService extends IService<yljsb> {
     void deleteById(String id);
 
     yljsb selectByName(String name);
+
+    List<yljsb> serachAll(Integer yjid, Integer ejid, Integer sjid, Integer bqid, Integer lx);
 }

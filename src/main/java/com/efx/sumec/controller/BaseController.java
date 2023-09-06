@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.imageio.stream.FileImageOutputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -429,6 +430,66 @@ public class BaseController {
             return request.getRemoteAddr();
         }
         return request.getHeader("x-forwarded-for");
+    }
+
+    protected user getUser() throws Exception {
+        user user = new user();
+        ylxxz xxz = xxzService.selGetAll();
+        user.setZt(xxz.getXxz002());
+        user.setAdd(xxz.getXxz013());
+        user.setWeb(xxz.getXxz010());
+        user.setEmail(xxz.getXxz011());
+        user.setTel(xxz.getXxz012());
+        user.setWebjj(xxz.getXxz007());
+        user.setCpyst(xxz.getXxz007());
+        user.setCpys(xxz.getXxz017());
+        user.setBqlist(wzbService.serachAll());
+        user.setFllist(xtfService.selectBytype());
+        return user;
+    }
+
+    /**
+     *
+     * 上传文件
+     * @throws IOException
+     */
+    protected Map scwj1(MultipartFile file,Date date,String jtp,String wjjm,HttpServletRequest request,String[] arr, long desFileSize) throws IOException{
+        String path = LoginController.class.getClass().getResource("/").getPath();
+        path = path.substring(1,path.length())+"static/";
+                            String jtps = null!=jtp&&!jtp.toString().trim().isEmpty()?path+wjjm+"/"+jtp:null;
+        Map map = new HashMap();
+
+        String filejw = (file.getOriginalFilename().substring(file.getOriginalFilename().lastIndexOf("."))).toLowerCase();
+        String filename = TIME_ORDER.format(date)+filejw;
+
+        if(!Arrays.asList(arr).contains(filejw)){
+            map.put("error", "1");
+            return map;
+        }
+
+        if (jtps != null) {
+            File oldFile = new File(jtps);
+            oldFile.delete();
+        }
+
+        byte[] byt;
+
+        byt = file.getBytes();
+
+        File fil = new File(path+wjjm);
+        if (!fil.exists()) {
+            fil.mkdirs();
+        }
+
+        fil = new File(path+wjjm+"/"+filename);
+
+        FileImageOutputStream imageOutput = new FileImageOutputStream(fil);
+        imageOutput.write(byt, 0, byt.length);
+        imageOutput.close();
+
+        map.put("error", "0");
+        map.put("fileName", filename);
+        return map;
     }
 
 }

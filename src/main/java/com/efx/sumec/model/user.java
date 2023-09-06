@@ -1,8 +1,7 @@
 package com.efx.sumec.model;
 
-import com.baomidou.mybatisplus.annotation.TableField;
-
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * @Author Sunweifeng
@@ -16,13 +15,55 @@ public class user implements Serializable {
 
     private String js;//角色名称
 
-    private String add;//角色类型
+    private String zt;
 
-    private String web;//机构名称
+    private String add;//地址
 
-    private String eamil;//机构类型
+    private String web;//网站名称
 
-    private String tel;//机构类型
+    private String email;//电子邮件
+
+    private String tel;//电话
+
+    private String webjj;//
+
+    public String getWebjj() {
+        return webjj;
+    }
+    public String cpyst;//产品优势图
+    public String cpys;//产品优势
+
+    public String getCpyst() {
+        return cpyst;
+    }
+
+    public void setCpyst(String cpyst) {
+        this.cpyst = cpyst;
+    }
+
+    public String getCpys() {
+        return cpys;
+    }
+
+    public void setCpys(String cpys) {
+        this.cpys = cpys;
+    }
+
+    public String getZt() {
+        return zt;
+    }
+
+    public void setZt(String zt) {
+        this.zt = zt;
+    }
+
+    public void setWebjj(String webjj) {
+        this.webjj = webjj;
+    }
+
+    private List<ylwzb> bqlist;//标签
+
+    private List<ylxtf> fllist;//分类
 
     public String getUname() {
         return uname;
@@ -56,12 +97,12 @@ public class user implements Serializable {
         this.web = web;
     }
 
-    public String getEamil() {
-        return eamil;
+    public String getEmail() {
+        return email;
     }
 
-    public void setEamil(String eamil) {
-        this.eamil = eamil;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getTel() {
@@ -70,5 +111,21 @@ public class user implements Serializable {
 
     public void setTel(String tel) {
         this.tel = tel;
+    }
+
+    public List<ylwzb> getBqlist() {
+        return bqlist;
+    }
+
+    public void setBqlist(List<ylwzb> bqlist) {
+        this.bqlist = bqlist;
+    }
+
+    public List<ylxtf> getFllist() {
+        return fllist;
+    }
+
+    public void setFllist(List<ylxtf> fllist) {
+        this.fllist = fllist;
     }
 }

@@ -5,25 +5,33 @@ import com.alibaba.fastjson.JSONObject;
 import com.efx.sumec.model.*;
 import com.efx.sumec.until.EncrpytUtil;
 import com.efx.sumec.until.RSACoder;
+import org.apache.tomcat.util.http.fileupload.FileItemFactory;
+import org.apache.tomcat.util.http.fileupload.FileUploadException;
+import org.apache.tomcat.util.http.fileupload.disk.DiskFileItemFactory;
+import org.apache.tomcat.util.http.fileupload.servlet.ServletFileUpload;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.imageio.ImageIO;
+import javax.servlet.ServletContext;
+import javax.servlet.ServletException;
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.text.SimpleDateFormat;
-import java.util.List;
 import java.util.*;
 
 @Controller
@@ -226,7 +234,7 @@ public class LoginController extends BaseController {
                     user.setUname(use.getUse002());
                     user.setAdd(xxz.getXxz013());
                     user.setWeb(xxz.getXxz010());
-                    user.setEamil(xxz.getXxz011());
+                    user.setEmail(xxz.getXxz011());
                     user.setTel(xxz.getXxz012());
                     session.setAttribute("umsg", user);
                     mav.setViewName("redirect:/toHt/toHTindex");
@@ -323,7 +331,7 @@ public class LoginController extends BaseController {
             user.setUname(use.getUse002());
             user.setAdd(xxz.getXxz013());
             user.setWeb(xxz.getXxz010());
-            user.setEamil(xxz.getXxz011());
+            user.setEmail(xxz.getXxz011());
             user.setTel(xxz.getXxz012());
             session.setAttribute("umsg", user);
             map.put("url", "/toHt/toHTindex");
@@ -425,5 +433,33 @@ public class LoginController extends BaseController {
         HashMap result = new HashMap();
         result.put("list", xtfService.selectBysjid(Integer.valueOf(request.getParameter("sjid"))));
         return JSON.toJSONString(result);
+    }
+
+    @RequestMapping(value = "upload")
+    @ResponseBody
+    public String upload(@RequestParam("imgFile") MultipartFile[] files, HttpServletRequest request) {
+        JSONObject jb=new JSONObject();
+        jb.put("error", 0);
+        //文件保存目录路径
+        String path = request.getSession().getServletContext().getRealPath("/");
+        //定义允许上传的文件扩展名
+        try {
+
+            if (files!=null&&files.length>0) {
+                for (MultipartFile file : files) {
+                    Map upload = scwj1(file, new Date(), null, "upload/kingimg", request, ".gif,.jpg,.jpeg,.png,.bmp".split(","), 0);
+                    jb.put("error", 0);
+                    jb.put("message", "上传成功！");
+//                    jb.put("url", "http://localhost/upload/kingimg/"+upload.get("fileName"));
+                    jb.put("url", "http://www.pvmall.com.cn/upload/kingimg/"+upload.get("fileName"));
+                    return jb.toJSONString();
+                }
+            }
+        } catch (Exception e1) {
+            jb.put("error", 1);
+            jb.put("message", e1.getMessage());
+            return jb.toJSONString();
+        }
+        return jb.toJSONString();
     }
 }

@@ -305,6 +305,7 @@ public class HTinfoController extends BaseController {
             return null;
         }
         mav.addObject("item", xxzService.selGetAll());
+        mav.addObject("msg", request.getParameter("msg"));
         mav.setViewName("wzxx");
         return mav;
     }
@@ -335,6 +336,12 @@ public class HTinfoController extends BaseController {
         if(null!=file2.getOriginalFilename()&&!file2.getOriginalFilename().toString().isEmpty()){
             uploadpic("assets/favicon.ico",file2,null);
         }
+        MultipartFile file3 = multipartHttpServletRequest.getFile("up3");
+        if(null!=file3.getOriginalFilename()&&!file3.getOriginalFilename().toString().isEmpty()){
+            String filename=sdf.format(new Date())+file3.getOriginalFilename().substring(file3.getOriginalFilename().lastIndexOf("."));
+            uploadpic("upload/mapimg/"+filename,file3,"upload/mapimg/"+request.getParameter("t16"));
+            xxz.setXxz016(filename);
+        }
         xxz.setXxz002(request.getParameter("t1"));
         xxz.setXxz005(request.getParameter("t2"));
         xxz.setXxz006(request.getParameter("t3"));
@@ -343,6 +350,7 @@ public class HTinfoController extends BaseController {
 		xxz.setXxz011(request.getParameter("t6"));
         xxz.setXxz012(request.getParameter("t7"));
         xxz.setXxz013(request.getParameter("t8"));
+        xxz.setXxz017(request.getParameter("t9"));
 		if(null!=request.getParameter("sjbfid")&&!request.getParameter("sjbfid").toString().isEmpty()){
 			xxz.setXxz001(Integer.valueOf(request.getParameter("sjbfid")));
             xxz.setXxz008(getUse(request).getUse001());

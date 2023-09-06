@@ -312,6 +312,9 @@ public class ProductController extends BaseController {
             if (request.getParameter("name") != null && !request.getParameter("name").toString().isEmpty()) {
                 pb.setOthersql(request.getParameter("name"));
             }
+            if (request.getParameter("yjid") != null && !request.getParameter("yjid").toString().isEmpty()) {
+                pb.setOthersql1(request.getParameter("yjid"));
+            }
             mav.addObject("pageobj", jsbService.selectPageBean(pb));
             mav.addObject("xtflist", xtfService.selectBysjid(null));
             mav.addObject("wzblist", wzbService.serachAll());
@@ -353,10 +356,10 @@ public class ProductController extends BaseController {
         yljsb item = new yljsb();
         item.setJsb002(request.getParameter("t1"));
         item.setJsb003(request.getParameter("t2"));
-        item.setJsb004(Integer.valueOf(!request.getParameter("t31").isEmpty()?request.getParameter("t31"):(
+        item.setJsb004(Integer.valueOf(!request.getParameter("t33").isEmpty()?request.getParameter("t33"):(
                                          !request.getParameter("t32").isEmpty()?request.getParameter("t32"):(
-                                          !request.getParameter("t33").isEmpty()?request.getParameter("t33"):null))));
-        item.setJsb005(DATE.parse(request.getParameter("t4")));
+                                          !request.getParameter("t31").isEmpty()?request.getParameter("t31"):null))));
+        item.setJsb005(!request.getParameter("t4").isEmpty()?DATE.parse(request.getParameter("t4")):null);
         item.setJsb006(request.getParameter("t5"));
         item.setJsb007(request.getParameter("t6"));
         item.setJsb008(request.getParameter("t7"));
@@ -397,11 +400,11 @@ public class ProductController extends BaseController {
         MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
         List<MultipartFile> t1 = multipartRequest.getFiles("t11");
         if(t1!=null&&t1.size()>0&&!t1.get(0).getOriginalFilename().isEmpty()){
-            List<yljsc> tplist=jscService.seleteBycpId(item.getJsb001());
+/*            List<yljsc> tplist=jscService.seleteBycpId(item.getJsb001());
             for(yljsc jsc:tplist){
                 uploadpic(null, null, "upload/pimg/"+jsc.getJsc003());
-            }
-            jscService.deleteById(item.getJsb001());
+            }*/
+//            jscService.deleteById(item.getJsb001());
             Date date = new Date();
             yljsc jsc = new yljsc();
             int i=0;
@@ -418,8 +421,22 @@ public class ProductController extends BaseController {
 
             }
         }
+        String delimg=request.getParameter("delimg");
+        String[] ids=delimg.split("#");
+        @SuppressWarnings("unchecked")
+        List<String> list = (List<String>)(List<?>)Arrays.asList(ids);
+        list.removeAll(Collections.singleton(null));
+        if(list!=null&&list.size()>0){
+            String fpath = LoginController.class.getClass().getResource("/").getPath();
+            fpath = fpath.substring(1,fpath.length())+"static/";
+            for(String n:list){
+                if(n!="")uploadpic(null,null,fpath+"upload/pimg/"+n);
+            }
+            jscService.deleteById(item.getJsb001(),list);
+        }
         mav.addObject("pages", request.getParameter("pages"));
         mav.addObject("name", request.getParameter("name"));
+        mav.addObject("yjid", request.getParameter("yjid"));
         mav.setViewName("redirect:/toPr/tocp");
         return mav;
     }

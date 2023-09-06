@@ -29,10 +29,11 @@ public class YljscServiceImpl implements YljscService {
 
 
     @Override
-    public void deleteById(int id) {
+    public void deleteById(int id, List<String> list) {
         yljscExample e1 = new yljscExample();
         Criteria c = e1.createCriteria();
         c.andJsc002EqualTo(id);
+        c.andJsc003In(list);
         jscMapper.deleteByExample(e1);
     }
 

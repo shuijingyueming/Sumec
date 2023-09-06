@@ -14,7 +14,7 @@ import java.util.List;
  * @since 2023-03-15
  */
 public interface YljscService extends IService<yljsc> {
-    void deleteById(int id);
+    void deleteById(int id, List<String> list);
 
     yljsc insert(yljsc jsc);
 
