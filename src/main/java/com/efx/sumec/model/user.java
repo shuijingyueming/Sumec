@@ -15,6 +15,9 @@ public class user implements Serializable {
 
     private String js;//角色名称
 
+    private String title;//网站标题
+
+    private String keyword;//网站标题
     private String zt;
 
     private String add;//地址
@@ -32,6 +35,22 @@ public class user implements Serializable {
     }
     public String cpyst;//产品优势图
     public String cpys;//产品优势
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getKeyword() {
+        return keyword;
+    }
+
+    public void setKeyword(String keyword) {
+        this.keyword = keyword;
+    }
 
     public String getCpyst() {
         return cpyst;

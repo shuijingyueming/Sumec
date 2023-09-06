@@ -99,10 +99,10 @@
                         <td>
                             <input th:onclick="toxq([[${item.uta001}]])" class="jsgrid-button jsgrid-search-button" type="button" title="详情">
                             <th:block th:if="${item.uta004=='A'}">
-                                <input th:onclick="xgzt([[${item.uta001}]],[['B']])" class="jsgrid-button jsgrid-cancel-edit-buttons" type="button" th:title="处理">
+                                <input th:onclick="xgzt([[${item.uta001}]],[['B']])" class="jsgrid-button jsgrid-update-button" type="button" th:title="处理">
                             </th:block>
                             <!--<th:block th:if="${item.uta004=='B'}">
-                                <input th:onclick="xgzt([[${item.uta001}]],[['A']])" class="jsgrid-button jsgrid-update-button" type="button" th:title="正常">
+                                <input th:onclick="xgzt([[${item.uta001}]],[['A']])" class="jsgrid-button jsgrid-cancel-edit-buttons" type="button" th:title="正常">
                             </th:block>-->
 <!--                            <input th:onclick="edit([[${item.uta001}]])" class="jsgrid-button jsgrid-edit-button" type="button" title="编辑">-->
 <!--                            <input th:onclick="del([[${item.uta001}]])" class="jsgrid-button jsgrid-delete-button" type="button" title="删除">-->

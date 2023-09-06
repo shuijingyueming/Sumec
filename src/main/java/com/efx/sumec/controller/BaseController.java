@@ -436,12 +436,14 @@ public class BaseController {
         user user = new user();
         ylxxz xxz = xxzService.selGetAll();
         user.setZt(xxz.getXxz002());
-        user.setAdd(xxz.getXxz013());
+        user.setTitle(xxz.getXxz005());
+        user.setKeyword(xxz.getXxz006());
+        user.setWebjj(xxz.getXxz007());
         user.setWeb(xxz.getXxz010());
         user.setEmail(xxz.getXxz011());
         user.setTel(xxz.getXxz012());
-        user.setWebjj(xxz.getXxz007());
-        user.setCpyst(xxz.getXxz007());
+        user.setAdd(xxz.getXxz013());
+        user.setCpyst(xxz.getXxz016());
         user.setCpys(xxz.getXxz017());
         user.setBqlist(wzbService.serachAll());
         user.setFllist(xtfService.selectBytype());
