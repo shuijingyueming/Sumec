@@ -32,4 +32,6 @@ public interface yljsbMapper {
     List<yljsb> selectByExampleAndPage(yljsbExample example, RowBounds rowBounds);
 
     List<yljsb> selectByExample1(yljsbExample e1);
+
+    int updateByPrimaryKeySelective1(yljsb jsb);
 }

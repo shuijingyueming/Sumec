@@ -4,10 +4,19 @@ import java.util.Date;
 import java.util.List;
 
 public class yljsb {
+    private yluse use;
     private ylxtf xtf;
     private List<ylwza> wzalist;
     private List<yljbb> jbblist;
     private List<yljsc> jsclist;
+
+    public yluse getUse() {
+        return use;
+    }
+
+    public void setUse(yluse use) {
+        this.use = use;
+    }
 
     public List<yljsc> getJsclist() {
         return jsclist;

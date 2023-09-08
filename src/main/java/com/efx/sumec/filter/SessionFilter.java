@@ -35,7 +35,8 @@ public class SessionFilter implements Filter {
                 if (requestType != null && "XMLHttpRequest".equals(requestType)) {
                     response.getWriter().write(this.NO_LOGIN);
                 } else {
-                    response.setContentType("text/html;charset=utf-8");
+                    filterChain.doFilter(request, response);
+                   /* response.setContentType("text/html;charset=utf-8");
                     PrintWriter out = response.getWriter();
 
                     out.println("<html>");
@@ -46,7 +47,7 @@ public class SessionFilter implements Filter {
                     out.println("window.parent.location='/toWeb/toindex';");
                     out.println("</script>");
                     out.println("</html>");
-                    out.flush();
+                    out.flush();*/
                 }
                 return;
             }

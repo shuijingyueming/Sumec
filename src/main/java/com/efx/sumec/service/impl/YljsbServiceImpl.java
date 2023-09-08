@@ -50,7 +50,7 @@ public class YljsbServiceImpl implements YljsbService {
 
     @Override
     public boolean update(yljsb jsb) {
-        return jsbMapper.updateByPrimaryKeySelective(jsb)>0?true:false;
+        return jsbMapper.updateByPrimaryKeySelective1(jsb)>0?true:false;
     }
 
     @Override

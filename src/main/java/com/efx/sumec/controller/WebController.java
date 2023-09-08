@@ -28,14 +28,11 @@ public class WebController extends BaseController {
     public ModelAndView toindex(HttpServletRequest request, HttpServletResponse response) throws Exception{
         ModelAndView mav = new ModelAndView();
         HttpSession session = request.getSession();
-        if(session.getAttribute("qtuser")==null){
-            user user = getUser() ;
-            if(user.getZt().equals("B")){
-                mav.setViewName("405");
-                return mav;
-            }else{
-                session.setAttribute("qtuser", user);
-            }
+        user user = getUser() ;
+        mav.addObject("qtuser", user);
+        if(user.getZt().equals("B")){
+            mav.setViewName("405");
+            return mav;
         }
         mav.addObject("item", jseService.selGetAll());
         mav.addObject("gglist", jsdService.serachAll());
@@ -47,14 +44,11 @@ public class WebController extends BaseController {
     public ModelAndView toproducts(HttpServletRequest request, HttpServletResponse response) throws Exception{
         ModelAndView mav = new ModelAndView();
         HttpSession session = request.getSession();
-        if(session.getAttribute("qtuser")==null){
-            user user = getUser() ;
-            if(user.getZt().equals("B")){
-                mav.setViewName("405");
-                return mav;
-            }else{
-                session.setAttribute("qtuser", user);
-            }
+        user user = getUser() ;
+        mav.addObject("qtuser", user);
+        if(user.getZt().equals("B")){
+            mav.setViewName("405");
+            return mav;
         }
         Integer yjid=(null!=request.getParameter("yjid")&&!request.getParameter("yjid").isEmpty()?Integer.valueOf(request.getParameter("yjid")):null);
         Integer ejid=(null!=request.getParameter("ejid")&&!request.getParameter("ejid").isEmpty()?Integer.valueOf(request.getParameter("ejid")):null);
@@ -72,14 +66,11 @@ public class WebController extends BaseController {
     public ModelAndView todetail(HttpServletRequest request, HttpServletResponse response) throws Exception {
         ModelAndView mav = new ModelAndView();
         HttpSession session = request.getSession();
-        if(session.getAttribute("qtuser")==null){
-            user user = getUser() ;
-            if(user.getZt().equals("B")){
-                mav.setViewName("405");
-                return mav;
-            }else{
-                session.setAttribute("qtuser", user);
-            }
+        user user = getUser() ;
+        mav.addObject("qtuser", user);
+        if(user.getZt().equals("B")){
+            mav.setViewName("405");
+            return mav;
         }
         mav.addObject("item", jsbService.getByid(Integer.valueOf(request.getParameter("id"))));
         mav.setViewName("QTdetail");
@@ -89,14 +80,11 @@ public class WebController extends BaseController {
     public ModelAndView toabout(HttpServletRequest request, HttpServletResponse response) throws Exception{
         ModelAndView mav = new ModelAndView();
         HttpSession session = request.getSession();
-        if(session.getAttribute("qtuser")==null){
-            user user = getUser() ;
-            if(user.getZt().equals("B")){
-                mav.setViewName("405");
-                return mav;
-            }else{
-                session.setAttribute("qtuser", user);
-            }
+        user user = getUser() ;
+        mav.addObject("qtuser", user);
+        if(user.getZt().equals("B")){
+            mav.setViewName("405");
+            return mav;
         }
         mav.addObject("item", jseService.selGetAll());
         mav.setViewName("QTabout");
@@ -107,14 +95,11 @@ public class WebController extends BaseController {
     public ModelAndView tocontact(HttpServletRequest request, HttpServletResponse response) throws Exception{
         ModelAndView mav = new ModelAndView();
         HttpSession session = request.getSession();
-        if(session.getAttribute("qtuser")==null){
-            user user = getUser() ;
-            if(user.getZt().equals("B")){
-                mav.setViewName("405");
-                return mav;
-            }else{
-                session.setAttribute("qtuser", user);
-            }
+        user user = getUser() ;
+        mav.addObject("qtuser", user);
+        if(user.getZt().equals("B")){
+            mav.setViewName("405");
+            return mav;
         }
         mav.setViewName("QTcontcat");
         return mav;
@@ -124,14 +109,11 @@ public class WebController extends BaseController {
     public ModelAndView toorder(HttpServletRequest request, HttpServletResponse response) throws Exception {
         ModelAndView mav = new ModelAndView();
         HttpSession session = request.getSession();
-        if(session.getAttribute("qtuser")==null){
-            user user = getUser() ;
-            if(user.getZt().equals("B")){
-                mav.setViewName("405");
-                return mav;
-            }else{
-                session.setAttribute("qtuser", user);
-            }
+        user user = getUser() ;
+        mav.addObject("qtuser", user);
+        if(user.getZt().equals("B")){
+            mav.setViewName("405");
+            return mav;
         }
         mav.addObject("item", jsbService.getByid(Integer.valueOf(request.getParameter("id"))));
         mav.addObject("msg", request.getParameter("msg"));
@@ -143,14 +125,11 @@ public class WebController extends BaseController {
     public ModelAndView xgdd(HttpServletRequest request,HttpServletResponse response)throws Exception{
         ModelAndView mav = new ModelAndView();
         HttpSession session = request.getSession();
-        if(session.getAttribute("qtuser")==null){
-            user user = getUser() ;
-            if(user.getZt().equals("B")){
-                mav.setViewName("405");
-                return mav;
-            }else{
-                session.setAttribute("qtuser", user);
-            }
+        user user = getUser() ;
+        mav.addObject("qtuser", user);
+        if(user.getZt().equals("B")){
+            mav.setViewName("405");
+            return mav;
         }
         yluta item=new yluta();
         item.setUta001(UUID.randomUUID().toString().replace("-",""));
