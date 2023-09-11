@@ -29,12 +29,18 @@ $(function(){
         }
     );
 });
-//批量删除
 function toproducts(yjid,ejid,sjid,bqid){
     var params = [["yjid",yjid],["ejid",ejid],["sjid",sjid],["bqid",bqid]];
     form_submit("toWeb/toproducts","get",params,"_self");
 }
+
+function toproduct(){
+    var params = [["name",$("#name").val()]];
+    form_submit("toWeb/toproducts","get",params,"_self");
+}
+
 function todetail(id){
+	console.log(id)
     var params = [["id",id]];
     form_submit("toWeb/todetail","get",params,"_self");
 }

@@ -1,19 +1,74 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <title>405</title>
-    <meta name="keywords" content=""/>
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <base th:href="${#request.getContextPath()}+'/'">
+    <title>[[${qtuser.title}]]</title>
+	<meta name="description" th:attr="content=${qtuser.webjj}">
+	<meta name="keywords" th:attr="content=${qtuser.keyword}">
+	<meta name="apple-mobile-web-app-title" th:attr="content=${qtuser.title}">
+	<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+	<meta name="renderer" content="webkit|ie-comp|ie-stand">
+	<meta name="force-rendering" content="webkit"/>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta content="always" name="referrer">
+    <meta name="robots" content="index, follow" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+	
+	
+	<link rel="shortcut icon" href="assets/favicon.ico" type="image/x-icon"/>
+    <link rel="stylesheet" href="assets/css/vendor/vendor.min.css" />
+    <link rel="stylesheet" href="assets/css/plugins/plugins.min.css" />
+    <link rel="stylesheet" href="assets/css/style.min.css">
+	
 </head>
-
 <body>
-<div>
-    <!-- Page Content Starts-->
+ <div class="section ">
+  <div class="hero-slider swiper-container slider-nav-style-1 slider-dot-style-1"><!-- Hero slider Active -->
+    <div class="swiper-wrapper">
+      <div class="hero-slide-item slider-height swiper-slide d-flex bg-color1">
+        <div class="container align-self-center">
+          <div class="row">
+            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 align-self-center sm-center-view" >
+              <div class="hero-slide-content slider-animated-1">
+			    <img src="upload/mapimg/clogo.png" class="logo404"/>
+                <h2 class="txt404" style="margin-top:30px;">The website is </h2>
+                <h2 class="txt404">currently being updated !</h2>
+              </div>
+            </div>
+            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 d-flex justify-content-center position-relative">
+              <div class="show-case">
+                <div class="hero-slide-image"><img src="assets/images/w404.jpg"/></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Add Arrows -->
+  </div>
+</div>
+
+  <div class="testimonial-area footline"></div>
+   <div class="testimonial-area" style="width:100%;margin-top:0;">
+    <div class="container">
+     <div class="row">
+	   <div class="col-xl-5 col-lg-5 col-md-5 col-sm-5 align-self-center sm-center-view" >
+	      <div class="foottxt">© SUMEC ENGINEERING 2023 - AII Ris Reserved</div>
+	   </div>
+	   <div class="col-xl-7 col-lg-7 col-md-7 col-sm-7 align-self-center sm-center-view" >
+	       <div class="dfdiv" style="min-height: 100px;">
+		    <div class="dftitle" style="height: 50px;line-height: 50px;">Contact</div>
+			<div class="dkcon">
+			    <div class="dk">ADD: &nbsp;[[${qtuser.add}]]</div>
+				<div class="dk" style="margin-top:10px;">WEB: &nbsp;[[${qtuser.web}]]</div>
+			</div>
+		  </div>
+	   </div>
+	 </div>
+   </div>
+  </div>
+
+    <!-- 
     <div>
         <img src="upload/mapimg/clogo.png">
         The website is currently being updated !
@@ -27,12 +82,12 @@
         <div>
             <span>FOLLOW</span>
         </div>
-    </div>
-    <!-- Page Content Ends -->
+    </div>Page Content Starts-->
 </div>
-<!-- Bootstrap JS -->
-<script src="../assets/js/jquery/jquery.min.js"></script>
-<script src="http://cdn.bootstrapmb.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+<script src="assets/js/jquery3.min.js"></script>
+<script src="assets/js/vendor/vendor.min.js"></script>
+<script src="assets/js/jquery-ui.min.js"></script>
+<script src="assets/js/plugins/plugins.min.js"></script>
+<script src="assets/js/main.js"></script>
 </body>
-
 </html>
