@@ -148,7 +148,8 @@
 	    <div class="col-lg-11 col-xl-11 col-md-11 col-sm-12 col-xs-12 contactE" th:text="${item.jsb002}"></div>
 	   </div>
 	   <form class="contact-form-style" id="submitForm" action="toWeb/xgdd" method="post">
-	     <input type="hidden" id="id" name="id" th:value="${item.jsb001}"/>
+	       <input type="hidden" id="id" name="id" th:value="${item.jsb001}"/>
+		   <input type="hidden" id="t17" name="t17" th:value="${item.jsb002}"/>
 		 <div class="row mb-15px">
 		    <div class="col-lg-1 col-xl-1 col-md-1 col-sm-0 col-xs-0"></div>
 			<div class="col-lg-5 col-xl-5 col-md-5 col-sm-12 col-xs-12">

@@ -120,6 +120,7 @@ public class AppController extends BaseController {
         item.setUta010(request.getParameter("t5"));
         item.setUta011(request.getParameter("t6"));
         item.setUta012(request.getParameter("t7"));
+        item.setUta017(request.getParameter("t17"));
         item=utaService.insert(item);
         result.put("id", item.getUta003());
         result.put("msg", "C");

@@ -145,6 +145,7 @@ public class WebController extends BaseController {
         item.setUta010(request.getParameter("t5"));
         item.setUta011(request.getParameter("t6"));
         item.setUta012(request.getParameter("t7"));
+        item.setUta017(request.getParameter("t17"));
         item=utaService.insert(item);
         mav.addObject("id", item.getUta003());
         mav.addObject("msg", "C");
