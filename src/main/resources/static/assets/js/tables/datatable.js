@@ -63,4 +63,17 @@ $(document).ready(function () {
             "targets": [0,11]
         }]
     });
+    $('#cpexm').DataTable({
+        // "searching":false,
+        "info":false,
+        "paging": false,
+        dom: 'Bfrtip',
+        buttons: [/*'excel','print',*/
+            {text: '新添加',action: function ( e, dt, node, config ) {edit();}},
+            {text: '批量删除',action: function ( e, dt, node, config ) {delete_item();}},],
+        "columnDefs": [ {
+            "orderable": false,
+            "targets": [0,7]
+        }]
+    });
 });

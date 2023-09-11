@@ -36,7 +36,7 @@ public class WebController extends BaseController {
         }
         mav.addObject("item", jseService.selGetAll());
         mav.addObject("gglist", jsdService.serachAll());
-        mav.addObject("cplist", jsbService.serachAll(null,null,null,null,1));
+        mav.addObject("cplist", jsbService.serachAll(null,null,null,null,1, null));
         mav.setViewName("QThome");
         return mav;
     }
@@ -54,11 +54,12 @@ public class WebController extends BaseController {
         Integer ejid=(null!=request.getParameter("ejid")&&!request.getParameter("ejid").isEmpty()?Integer.valueOf(request.getParameter("ejid")):null);
         Integer sjid=(null!=request.getParameter("sjid")&&!request.getParameter("sjid").isEmpty()?Integer.valueOf(request.getParameter("sjid")):null);
         Integer bqid=(null!=request.getParameter("bqid")&&!request.getParameter("bqid").isEmpty()?Integer.valueOf(request.getParameter("bqid")):null);
+        String name=null!=request.getParameter("name")&&!request.getParameter("name").isEmpty()?request.getParameter("name"):null;
         mav.addObject("yjid", yjid);
         mav.addObject("ejid", ejid);
         mav.addObject("sjid", sjid);
         mav.addObject("bqid", bqid);
-        mav.addObject("cplist", jsbService.serachAll(yjid,ejid,sjid,bqid,yjid==null&&ejid==null&&sjid==null&&bqid==null?1:null));
+        mav.addObject("cplist", jsbService.serachAll(yjid,ejid,sjid,bqid,yjid==null&&ejid==null&&sjid==null&&bqid==null&&name==null?1:null,name));
         mav.setViewName("QTproducts");
         return mav;
     }

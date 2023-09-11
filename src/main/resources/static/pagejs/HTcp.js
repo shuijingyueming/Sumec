@@ -23,7 +23,7 @@ $(document).ready(function () {
     $("#menuName", parent.document).val("menu_b4");
     $("#menu_b4", parent.document).addClass("active");
 
-    $("#submitForm").validate({
+    /*$("#submitForm").validate({
         errorPlacement: function(error, element) {
             //替换错误显示位置，error表示错误信息
             $(element).parent("div").append(error);
@@ -71,7 +71,7 @@ $(document).ready(function () {
             var index = window.parent.tis("保存中");
             form.submit();
         }
-    });
+    });*/
 
     pdyes($("#pages").val(), $("#counts").val());
 
@@ -186,17 +186,21 @@ function edit(id){
                         if(i==0){
                             let ca=o.find("[name='ca']");
                             let t9=o.find("[name='t9']");
+                            let del=o.find("[name='del']");
                             ca.val(t1);
                             t9.val(t2);
+                            del.hide();
                         }else{
                             let c=o.clone();
                             let ca=c.find("[name='ca']");
                             let t9=c.find("[name='t9']");
+                            let del=c.find("[name='del']");
                             ca.val(t1);
                             t9.val(t2);
-                            if(i==(size-1)){
-                                c.append(" <button type='button' class='effect-btn btn btn-light mt-2 mr-2 sm-btn' style='margin-top:25px;' onclick='deltime(this)'>删除</button>")
-                            }
+                            del.show();
+                            // if(i==(size-1)){
+                            //     c.append(" <button type='button' class='effect-btn btn btn-light mt-2 mr-2 sm-btn' style='margin-top:25px;' onclick='deltime(this)'>删除</button>")
+                            // }
                             $("#time").append(c);
                         }
                     }
@@ -215,6 +219,7 @@ function edit(id){
                         $("#p11").append(html);
                     }
                 }
+                movemouse(".item",".closep")
             },
             error:function(){}
         });
@@ -229,6 +234,7 @@ function edit(id){
 }
 
 function clean(){
+    $("#id").val("");
     $("#t1").val("");
     $("#t2").val("");
     $("#t3").val("");
@@ -252,6 +258,14 @@ function clean(){
     cleantimes();
 }
 
+function xgzt(id,type){
+    var r = confirm("确定修改此产品的状态吗？");
+    if (r == true) {
+        var params = [ ["id",id], ["zt","U"],["type",type],
+            ["pages", $("#pages").val()],["name", $("#name").val()],["yjid", $("#yjid").val()]];
+        form_submit("toPr/tocp","get",params,"_self");
+    }
+}
 function xxcx(){
     var params = [["pages", $("#pages").val()],["name", $("#name").val()],["yjid", $("#yjid").val()]];
     form_submit("toPr/tocp","post",params,"_self");
@@ -287,6 +301,12 @@ function delete_item(){
 function showpdtpgs(id,img){
     var file = document.getElementById(id).files;
     if(file){
+        // for(var i=imglist.length;i>0;i--){
+        //     var data = imglist[i];
+        //     if(typeof(imglist[i])=="object"){
+        //         imglist.splice(i,1);
+        //     }
+        // }
         for(var i=0;i<file.length;i++){
             imglist.push(file[i]);
         }
@@ -297,6 +317,7 @@ function showpdtpgs(id,img){
 //删除图片
 function imgRemove(obj){
     let indexp = obj.getAttribute("id").replace("P","");
+    let name = obj.getAttribute("name");
     //后台删除图片
     if(obj.getAttribute("name").indexOf("upload/pimg/")>=0){
         $("#delimg").val($("#delimg").val()+"#"+(obj.getAttribute("name")).replace("upload/pimg/",""));
@@ -307,6 +328,7 @@ function imgRemove(obj){
 
 function insertImg(img){
     $(img).empty();
+    t11=[];
     var html="";
     for(var i=0;i<imglist.length;i++){
         var data = imglist[i];
@@ -328,7 +350,7 @@ function insertImg(img){
                         // if(width==414&&height==280){
                             html="<div class='item'>";
                             html+="<img src='"+e.target.result+"' style='width:150px;' />";
-                            // html+="<span class='closep' id=\'P"+i+"\' name='' onclick='imgRemove(this)'>X</span>";
+                            html+="<span class='closep' id=\'P"+i+"\' name='' onclick='imgRemove(this)'>X</span>";
                             html+="</div>";
                             $(img).append(html);
                         // console.log(html)
@@ -346,28 +368,30 @@ function insertImg(img){
             $(img).append(html);
         }
     }
+    movemouse(".item",".closep")
 }
 function addtime(){
     let len =$("#time").find('.timemode').length;
     let o=$(".timemode").eq(len-1);
     let c=o.clone();
     let time2=o.find("[name='ca']");
-    o.find('button').remove();
+    //o.find('button').remove();
     c.find("[name='ca']").val("");
     c.find("[name='t9']").val("");
+    c.find("[name='del']").show();
     console.log(c.find("[name='ca']").val())
-    if(len==1) c.append("<button type='button' class='effect-btn btn btn-light mt-2 mr-2 sm-btn' style='margin-top:25px;' onclick='deltime(this)'>删除</button>")
+    // if(len==1) c.append("<button type='button' class='effect-btn btn btn-light mt-2 mr-2 sm-btn' style='margin-top:25px;' onclick='deltime(this)'>删除</button>")
     $("#time").append(c);
     $("#time").find('.error').remove();
 }
 
 function deltime(o){
     o.parentNode.parentNode.removeChild(o.parentNode);
-    let len =$("#time").find('.timemode').length;
+    /*let len =$("#time").find('.timemode').length;
     if(len>1){
         let lo=$(".timemode").eq(len-1);
         lo.append(" <button type='button' class='effect-btn btn btn-light mt-2 mr-2 sm-btn' style='margin-top:25px;' onclick='deltime(this)'>删除</button>")
-    }
+    }*/
 }
 
 function cleantimes(){
@@ -380,5 +404,84 @@ function cleantimes(){
     ca.val("");
     let t9=$(".timemode").eq(0).find("[name='t9']");
     t9.val("");
+    let del=$(".timemode").eq(0).find("[name='del']");
+    del.hide();
+}
 
+function movemouse(id,lbid){
+    $(lbid).hide(); //打开页面隐藏下拉列表
+    $(id).hover( //鼠标滑过导航栏目时
+        function(){
+            $(this).find(lbid).show(); //显示下拉列表
+        },
+        function(){
+            $(this).find(lbid).hide(); //鼠标移开后隐藏下拉列表
+        }
+    );
+    $(lbid).hover( //鼠标滑过下拉列表自身也要显示，防止无法点击下拉列表
+        function(){
+            $(this).show();
+        },
+        function(){
+            $(this).hide();
+        }
+    );
+}
+
+function save(id){
+    var falg=true;
+    $('.error').remove();
+    if($.trim($("#t1").val())==""){
+        $("#t1").after('<label id="t1-error" class="error" style="margin-left:5px;margin-top:6px;color: red;" for="t1">必须填写</label>');
+        falg=false;
+    }
+    if($.trim(KE.html())==""){
+        $("#t2").after('<label id="t2-error" class="error" style="margin-left:5px;margin-top:6px;color: red;" for="t3">必须填写</label>');
+        falg=false;
+    }
+    if($("#tyj").val()==""&&$("#tej").val()==""&&$("#tsj").val()==""){
+        $(".t3").append("<label id='t3-error' class='error' for='t3'>请选择类别</label>");
+        falg=false;
+    }
+    /*if(imglist.length==0){
+        $("#t11").after('<label id="t11-error" class="error" style="margin-left:5px;margin-top:6px;color: red;" for="t4">请添加图片</label>');
+        falg=false;
+    }*/
+    if($.trim($("#t5").val())==""){
+        $("#t5").after('<label id="t5-error" class="error" style="margin-left:5px;margin-top:6px;color: red;" for="t1">必须填写</label>');
+        falg=false;
+    }
+    if($.trim($("#t6").val())==""){
+        $("#t6").after('<label id="t6-error" class="error" style="margin-left:5px;margin-top:6px;color: red;" for="t1">必须填写</label>');
+        falg=false;
+    }
+    if($.trim($("#t7").val())==""){
+        $("#t7").after('<label id="t7-error" class="error" style="margin-left:5px;margin-top:6px;color: red;" for="t1">必须填写</label>');
+        falg=false;
+    }
+    if(falg){
+        var form = document.getElementById("submitForm");
+        var formData = new FormData(form);
+        formData.delete("t2");
+        formData.append("t2",KE.html());
+        formData.delete("t11");
+        for(var i=0;i<t11.length;i++){
+            formData.append("t11",t11[i]);
+        }
+        $.ajax({//jQuery方法，此处可以换成其它请求方式
+            url: 'toPr/xgcp1',
+            type:'post',
+            data: formData,
+            async: false,
+            cache: false, //表示上传文件不需要缓存
+            processData: false,//表示不需要对数据做处理
+            contentType: false,//因为前面已经声明了是‘FormData对象’
+            mimeType:"multipart/form-data",
+            dataType:'json',
+            success: function (res) {
+                var params = [["pages", $("#pages").val()],["name", $("#name").val()],["yjid", $("#yjid").val()],["msg", res.msg]];
+                form_submit("toPr/tocp","post",params,"_self");
+            }
+        })
+    }
 }

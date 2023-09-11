@@ -97,6 +97,7 @@ function edit(id){
 }
 
 function clean(){
+    $("#id").val("");
     $("#t1").val("");
     $("#shtp").attr("src","");
     $("#adiv").removeClass("an");

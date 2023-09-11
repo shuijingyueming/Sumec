@@ -134,6 +134,7 @@ function edit(id){
 }
 
 function clean(){
+    $("#id").val("");
     $("#t1").val("");
     $("#t2").val("");
     $("#shtp").attr("src","");

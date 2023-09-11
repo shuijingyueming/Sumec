@@ -102,9 +102,10 @@ public class YljsbServiceImpl implements YljsbService {
     }
 
     @Override
-    public List<yljsb> serachAll(Integer yjid, Integer ejid, Integer sjid, Integer bqid, Integer lx) {
+    public List<yljsb> serachAll(Integer yjid, Integer ejid, Integer sjid, Integer bqid, Integer lx, String name) {
         yljsbExample e1 = new yljsbExample();
         Criteria c = e1.createCriteria();
+        if(name!=null) c.andJsb002Like(name);
         if(sjid!=null){
             c.andJsb004EqualTo(sjid);
         }else if(ejid!=null){

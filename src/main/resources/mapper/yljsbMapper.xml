@@ -27,6 +27,10 @@
     <collection property="jbblist" column="JSB001"  select="com.efx.sumec.dao.yljbbMapper.selectBycpid"/>
     <collection property="jsclist" column="JSB001"  select="com.efx.sumec.dao.yljscMapper.selectBycpid"/>
   </resultMap>
+  <resultMap id="BaseResultMap2" type="com.efx.sumec.model.yljsb"  extends="BaseResultMap">
+    <association property="use" column="JSB009"  select="com.efx.sumec.dao.yluseMapper.selectByPrimaryKey"/>
+    <association property="xtf" column="JSB004"  select="com.efx.sumec.dao.ylxtfMapper.selectByPrimaryKey1"/>
+  </resultMap>
   <sql id="Example_Where_Clause">
     <where>
       <foreach collection="oredCriteria" item="criteria" separator="or">
@@ -420,7 +424,7 @@
       JSB018 = #{jsb018,jdbcType=VARCHAR}
     where JSB001 = #{jsb001,jdbcType=INTEGER}
   </update>
-  <select id="selectByExampleAndPage" resultMap="BaseResultMap" parameterType="com.efx.sumec.model.yljsbExample" flushCache="true" useCache="false">
+  <select id="selectByExampleAndPage" resultMap="BaseResultMap2" parameterType="com.efx.sumec.model.yljsbExample" flushCache="true" useCache="false">
     select
     <if test="distinct" >
       distinct
@@ -448,4 +452,33 @@
       order by ${orderByClause}
     </if>
   </select>
+  <update id="updateByPrimaryKeySelective1" parameterType="com.efx.sumec.model.yljsb">
+    update yljsb
+    <set>
+        JSB002 = #{jsb002,jdbcType=VARCHAR},
+        JSB003 = #{jsb003,jdbcType=VARCHAR},
+        JSB004 = #{jsb004,jdbcType=INTEGER},
+        JSB005 = #{jsb005,jdbcType=TIMESTAMP},
+        JSB006 = #{jsb006,jdbcType=VARCHAR},
+        JSB007 = #{jsb007,jdbcType=VARCHAR},
+        JSB008 = #{jsb008,jdbcType=VARCHAR},
+      <if test="jsb009 != null">
+        JSB009 = #{jsb009,jdbcType=INTEGER},
+      </if>
+      <if test="jsb010 != null">
+        JSB010 = #{jsb010,jdbcType=TIMESTAMP},
+      </if>
+      <if test="jsb011 != null">
+        JSB011 = #{jsb011,jdbcType=INTEGER},
+      </if>
+        JSB012 = #{jsb012,jdbcType=INTEGER},
+        JSB013 = #{jsb013,jdbcType=TIMESTAMP},
+        JSB014 = #{jsb014,jdbcType=INTEGER},
+        JSB015 = #{jsb015,jdbcType=VARCHAR},
+        JSB016 = #{jsb016,jdbcType=VARCHAR},
+        JSB017 = #{jsb017,jdbcType=VARCHAR},
+        JSB018 = #{jsb018,jdbcType=VARCHAR},
+    </set>
+    where JSB001 = #{jsb001,jdbcType=INTEGER}
+  </update>
 </mapper>

@@ -38,7 +38,7 @@
 <!-- Page Content Starts -->
 <div class="content-wrapper" id="bash">
     <div>
-        <th:block th:each="item,stat:${session.qtuser.fllist}">
+        <th:block th:each="item,stat:${qtuser.fllist}">
             <div>
                 <span th:text="${item.xtf001==yjid?'+':'-'}" th:onclick=""></span>
                 <span th:text="${item.xtf002}"  th:onclick="toproducts([[${item.xtf001}]],'','','')"></span>

@@ -31,5 +31,5 @@ public interface YljsbService extends IService<yljsb> {
 
     yljsb selectByName(String name);
 
-    List<yljsb> serachAll(Integer yjid, Integer ejid, Integer sjid, Integer bqid, Integer lx);
+    List<yljsb> serachAll(Integer yjid, Integer ejid, Integer sjid, Integer bqid, Integer lx, String name);
 }

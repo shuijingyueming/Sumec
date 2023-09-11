@@ -38,7 +38,7 @@
         </div>
 
         <div id="mode">
-            <th:block th:each="item,stat:${session.qtuser.fllist}">
+            <th:block th:each="item,stat:${qtuser.fllist}">
                 <div>
                     <span th:text="${item.xtf002}" th:value="${item.xtf001==yjid}" th:onclick="toproducts([[${item.xtf001}]],'','','')"></span>
                     <th:block th:each="item1,stat:${item.xtflist}">

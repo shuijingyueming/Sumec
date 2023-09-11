@@ -43,6 +43,7 @@ function clean(){
     $("#t1").val("");
     $("#sjid").val("");
     $("#type").val("");
+    $("#id").val("");
     $("#adiv").removeClass("an");
     $("#active").hide();
     $(".form-control").removeClass("error");

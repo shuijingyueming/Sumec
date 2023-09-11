@@ -28,15 +28,15 @@
 <div class="wrapper">
         <div>
             <span>TAGS</span>
-            <th:block th:each="item,stat:${session.qtuser.bqlist}">
+            <th:block th:each="item,stat:${qtuser.bqlist}">
                 <span th:text="${item.wzb002}" th:onclick="toproducts('','','',[[${item.wzb001}]])"></span>
             </th:block>
             </div>
         <div>
             <div>
                 <span>CONTACT</span>
-                ADD: <span th:text="${session.qtuser.add}" ></span>
-                WEB: <span th:text="${session.qtuser.web}" ></span>
+                ADD: <span th:text="${qtuser.add}" ></span>
+                WEB: <span th:text="${qtuser.web}" ></span>
             </div>
             <div>
                 <span>FOLLOW</span>

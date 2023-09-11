@@ -58,12 +58,12 @@
     </div>
     <div>
         <span>Product advantages</span>
-        <div><img th:src="'upload/mapimg/'+${session.qtuser.cpyst}"></div>
-        <div><span th:text="${session.qtuser.cpys}"></span></div>
+        <div><img th:src="'upload/mapimg/'+${qtuser.cpyst}"></div>
+        <div><span th:text="${qtuser.cpys}"></span></div>
     </div>
     <div>
         <span>About us</span>
-        <!--<span th:text="${session.qtuser.webjj}" ></span>-->
+        <!--<span th:text="${qtuser.webjj}" ></span>-->
         <span th:text="${item.jse002+item.jse003}"></span>
     </div>
 </div>
