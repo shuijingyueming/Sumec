@@ -116,7 +116,6 @@
 		   <th:block th:each="item,stat:${qtuser.fllist}">
 			 <li><a href="javascript:void(0);" th:text="${item.xtf002}" th:value="${item.xtf001==yjid}" th:onclick="toproducts([[${item.xtf001}]],'','','')"></a>
 			  <ul class="sub-menu">
-			    <li class="title"><a href="javascript:void(0);" th:text="${item.xtf002}" th:value="${item.xtf001==yjid}" th:onclick="toproducts([[${item.xtf001}]],'','','')"></a></li>
 			    <th:block th:each="item1,stat:${item.xtflist}">
 				  <li><a href="javascript:void(0);" th:text="${item1.xtf002}" th:value="${item1.xtf001==ejid}" th:onclick="toproducts([[${item.xtf001}]],[[${item1.xtf001}]],'','')"></a></li>
 				</th:block>
