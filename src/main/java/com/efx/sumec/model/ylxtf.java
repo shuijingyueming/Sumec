@@ -3,6 +3,16 @@ package com.efx.sumec.model;
 import java.util.List;
 
 public class ylxtf {
+    private List<yljsb>  jsblist;
+
+    public List<yljsb> getJsblist() {
+        return jsblist;
+    }
+
+    public void setJsblist(List<yljsb> jsblist) {
+        this.jsblist = jsblist;
+    }
+
     private  ylxtf xtf;
     private List<ylxtf> xtflist;
 

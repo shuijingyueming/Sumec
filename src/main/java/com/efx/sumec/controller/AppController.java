@@ -3,6 +3,7 @@ package com.efx.sumec.controller;
 import com.alibaba.fastjson.JSON;
 import com.efx.sumec.model.user;
 import com.efx.sumec.model.yluta;
+import com.efx.sumec.model.ylxtf;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
@@ -17,6 +18,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.UUID;
 
 @Controller
@@ -36,8 +38,13 @@ public class AppController extends BaseController {
         user user = getUser() ;
         result.put("qtuser", user);
         result.put("item", jseService.selGetAll());
-        result.put("gglist", jsdService.serachAll());
-        result.put("cplist", jsbService.serachAll(null,null,null,null,1, null));
+//        result.put("gglist", jsdService.serachAll());
+        List<ylxtf> fllist=xtfService.selectBysjid(null);
+        for(ylxtf xtf:fllist){
+            xtf.setJsblist(jsbService.serachAll(xtf.getXtf001(),null,null,null,1, null));
+        }
+        result.put("fllist", fllist);
+//        result.put("cplist", jsbService.serachAll(null,null,null,null,1, null));
         return JSON.toJSONString(result);
     }
 

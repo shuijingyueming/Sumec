@@ -56,6 +56,7 @@
                                     <li class="dd-item"><span th:onclick="edit('','')"><i class="fa fa-plus-square-o" aria-hidden="true"></i></span></li>
                                     <th:block  th:each="item,stat:${list}">
                                         <li class="dd-item" th:data-id="${item.xtf001}">
+                                            <img th:src="${'upload/typeimg/'+item.xtf004}" th:if="${item.xtf004!=null}">
                                             <div class="dd-handle" style="background: #F9F9F9;color:#333;" th:text="${item.xtf002}"></div>
                                             <div class="zdy-edit">
                                                     <a href="javascript:void(0);" th:onclick="edit([[${item.xtf001}]],'')" th:title="编辑当前分类"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
@@ -113,6 +114,19 @@
                                     <label>类别名称</label>
                                     <div class="form-group">
                                         <input lay-verify="required" id="t1" name="t1" type="text" class="form-control input-0" placeholder="请填写类别名称">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row" id="tp">
+                                <div class="col-md-6 col-xl-4 t2">
+                                    <div class="form-group">
+                                        <input id="t3" name="t3" type="hidden">
+                                        <label class="layui-form-label">图片</label>
+                                        <button type="button" class="effect-btn btn btn-light" style="margin-left:30px;width:80px;" onclick="$('#t2').click();">选择文件</button>
+                                        <br/><br/>
+                                        <input lay-verify="required" type="file" id="t2" name="t2" style="display: none;" onchange="showpdtpgs()" />
+                                        <img alt="..." src="" id="shtp" onclick="$('#t2').click()"
+                                             class="form-control" style="width:260px;height: 260px;border:1px solid rgb(229, 229, 229);" />
                                     </div>
                                 </div>
                             </div>
