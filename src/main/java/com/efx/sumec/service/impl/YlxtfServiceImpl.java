@@ -76,7 +76,6 @@ public class YlxtfServiceImpl implements YlxtfService {
         return xtfMapper.selectByExample(e1);
     }
 
-
     @Override
     public boolean saveBatch(Collection<ylxtf> entityList, int batchSize) {
         return false;

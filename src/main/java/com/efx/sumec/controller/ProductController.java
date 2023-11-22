@@ -222,6 +222,8 @@ public class ProductController extends BaseController {
             userid = Decrypt(session.getAttribute("user").toString());
             if (request.getParameter("zt") != null && !request.getParameter("zt").toString().isEmpty()) {
                 if (request.getParameter("zt").equals("D")) {
+                    ylxtf item=xtfService.getByid(Integer.valueOf(request.getParameter("id")));
+                    uploadpic(null, null, "upload/typeimg/"+item.getXtf004());
                     jsbService.deleteBylxid(Integer.parseInt(request.getParameter("id")));
                     xtfService.deleteById(Integer.parseInt(request.getParameter("id")));
                     xtfService.delete(Integer.parseInt(request.getParameter("id")));
@@ -267,6 +269,14 @@ public class ProductController extends BaseController {
         //修改
         if(!request.getParameter("t1").isEmpty())item.setXtf002(request.getParameter("t1"));
         if(!request.getParameter("sjid").isEmpty())item.setXtf003(Integer.valueOf(request.getParameter("sjid")));
+        MultipartHttpServletRequest multipartHttpServletRequest = (MultipartHttpServletRequest)request;
+        MultipartFile file = multipartHttpServletRequest.getFile("t2");
+        if(null!=file.getOriginalFilename()&&!file.getOriginalFilename().toString().isEmpty()){
+            Date date = new Date();
+            String filename = sdf.format(date)+file.getOriginalFilename().substring(file.getOriginalFilename().lastIndexOf("."));
+            item.setXtf004(filename);
+            uploadpic("upload/typeimg/"+filename,file,"upload/typeimg/"+request.getParameter("t3"));
+        }
         if(request.getParameter("id")!=null&&!request.getParameter("id").isEmpty()){
             item.setXtf001(Integer.valueOf((request.getParameter("id"))));
             xtfService.update(item);
